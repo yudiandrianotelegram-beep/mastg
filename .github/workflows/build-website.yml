@@ -4,10 +4,21 @@ on:
   push:
     branches:
       - master
+
 jobs:
-  deploy:
-    uses: OWASP/mas-website/.github/workflows/build-website-reusable.yml@main
-    with:
-      deploy: true
-    secrets: inherit
+  trigger-deploy:
     if: github.actor == 'cpholguera' || github.actor == 'sushi2k' || github.actor == 'TheDauntless'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: write  # Needed to trigger workflow in mas-website
+    steps:
+      - name: Trigger mas-website deploy
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -s -X POST \
+            -H "Authorization: Bearer ${TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/OWASP/mas-website/actions/workflows/build-github-pages.yml/dispatches \
+            -d '{"ref":"main","inputs":{"sources_override_json":"{\"OWASP/mastg\":\"master\"}"}}'
