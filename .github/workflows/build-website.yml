@@ -6,7 +6,7 @@ on:
       - master
 jobs:
   deploy:
-    uses: ./.github/workflows/build-website-reusable.yml
+    uses: OWASP/mas-website/.github/workflows/build-website-reusable.yml@main
     with:
       deploy: true
     secrets: inherit
