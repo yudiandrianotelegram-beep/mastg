@@ -49,7 +49,7 @@ For example, using radare2:
 32  0x004c8018   0x27510 0x00000000   0x27510 ---- 0x0   SYMTAB      .symtab
 ```
 
-**IMPORTANT**: The presence of these sections doesn't necessarily indicate that the binary hasn't been stripped. Some toolchains may retain these sections even in stripped binaries, but they are often empty or contain minimal information. Ultimately, what matters is **whether the symbols themselves are still present**. See @MASTG-TECH-0141 for more details on how to extract and analyze debugging symbols.
+**IMPORTANT**: The presence of these sections doesn't necessarily indicate that the binary hasn't been stripped. Some toolchains may retain these sections even in stripped binaries, but they are often empty or contain minimal information. Ultimately, what matters is **whether the symbols themselves are still present**. See @MASTG-TECH-0140 for more details on how to extract and analyze debugging symbols.
 
 ### External Debug Symbol Files
 

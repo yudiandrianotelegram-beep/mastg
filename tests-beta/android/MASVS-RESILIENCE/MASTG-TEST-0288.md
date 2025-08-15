@@ -15,23 +15,12 @@ This test checks whether the app includes debugging symbols in its native binari
 
 ## Steps
 
-1. Run a static analysis (@MASTG-TECH-0140) to retrieve any debugging information present in the native libraries.
-2. Use @MASTG-TECH-0141 to obtain debugging symbols from the native libraries.
+1. Run a static analysis (@MASTG-TECH-0140) to retrieve any debugging information present in the native binaries.
 
 ## Observation
 
-The output should identify all instances of debugging information in the native libraries.
+The output should identify all instances of debugging information in the native binaries.
 
 ## Evaluation
 
-The test **fails** if debugging information is present in any native binary. This includes any of the following conditions:
-
-- The output from @MASTG-TOOL-0028 shows:
-
-  ```plaintext
-  linenum  true
-  lsyms    true
-  stripped false
-  ```
-
-- Actual debugging symbols were successfully extracted.
+The test **fails** if debugging information is present in any native binary, including if actual debugging symbols were successfully extracted.
