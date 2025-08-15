@@ -1,5 +1,5 @@
 ---
-title: Hiding Sensitive Content On The Screen
+title: Hiding Sensitive Content on the Screen
 alias: hiding-sensitive-content-on-the-screen
 id: MASTG-BEST-0014
 platform: android
