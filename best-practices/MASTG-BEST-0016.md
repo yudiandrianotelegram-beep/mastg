@@ -11,44 +11,9 @@ Depending on the user interface, there are several ways to overlay the screen co
 
 ## SwiftUI Interface
 
-### iOS 17 and Later: Using `.backgroundTask(.snapshot)`
+### Using `scenePhase` and `.onChange`
 
-Starting with iOS 17, SwiftUI provides [`backgroundTask(.snapshot)`](https://developer.apple.com/documentation/swiftui/backgroundtask/snapshot), which allows you to [prepare your app for a system snapshot](https://developer.apple.com/documentation/swiftui/backgroundtask#Preparing-for-a-snapshot) (such as when the app is backgrounded). This is an ideal place to hide or mask sensitive content before the system takes a screenshot.
-
-Example:
-
-```swift
-@State private var showPrivacyScreen = false
-@Environment(\.scenePhase) private var scenePhase
-
-var body: some Scene {
-    WindowGroup {
-        ZStack {
-            ContentView()
-            if showPrivacyScreen {
-                Image("overlayImage")
-                    .resizable()
-                    .scaledToFill()
-                    .ignoresSafeArea()
-                    .transition(.opacity)
-            }
-        }
-    }
-    .backgroundTask(.snapshot) {
-        // This code runs right before the system takes a snapshot
-        showPrivacyScreen = true
-    }
-    .onChange(of: scenePhase) { newPhase in
-        if newPhase == .active {
-            showPrivacyScreen = false
-        }
-    }
-}
-```
-
-### Before iOS 17: Using `scenePhase` and `.onChange` in SwiftUI
-
-For earlier iOS versions, you can use the [`scenePhase`](https://developer.apple.com/documentation/swiftui/scenephase) environment value and the [`onChange(of:initial:_:)`](https://developer.apple.com/documentation/swiftui/view/onchange(of:initial:_:)-8wgw9) modifier to detect when your app moves to the background or becomes inactive. You can then overlay or mask sensitive content at those times to protect it from being captured in system snapshots.
+You can use the [`scenePhase`](https://developer.apple.com/documentation/swiftui/scenephase) environment value and the [`onChange(of:initial:_:)`](https://developer.apple.com/documentation/swiftui/view/onchange(of:initial:_:)-8wgw9) modifier to detect when your app moves to the background or becomes inactive. You can then overlay or mask sensitive content at those times to protect it from being captured in system snapshots.
 
 Example:
 
