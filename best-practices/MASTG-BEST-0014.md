@@ -22,4 +22,4 @@ Setting the `FLAG_SECURE` will make your screenshot black so that none confident
 
 | Without `FLAG_SECURE` | With `FLAG_SECURE` |
 |:----------------------:|:-----------------:|
-| <img src="../Document/Images/Chapters/0x05d/task-switcher-without-flag-secure.png" width="200px" /> | <img src="../Document/Images/Chapters/0x05d/task-switcher-without-flag-secure.png" width="200px" /> |
+| <img src="../Document/Images/Chapters/0x05d/task-switcher-without-flag-secure.png" width="200px" /> | <img src="../Document/Images/Chapters/0x05d/task-switcher-with-flag-secure.png" width="200px" /> |
