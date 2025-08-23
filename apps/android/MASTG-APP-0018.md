@@ -4,4 +4,4 @@ platform: android
 source: https://github.com/payatu/BugBazaar
 ---
 
-BugBazaar is an intentionally vulnerable android app designed for hands-on security testing. It comes packed with over 30 vulnerabilities that replicate real-world app features—along with the security flaws that often come with them. Perfect for learning and experimenting in a realistic environment.
+BugBazaar is an open-source Android application that is intentionally vulnerable, created for practical security testing. It includes more than 30 vulnerabilities that mimic real-world app functionalities, as well as the common security issues that arise.
