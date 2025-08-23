@@ -4,7 +4,7 @@ platform: ios
 source: https://github.com/payatu/iBugBazaar
 ---
 
-iBugBazaar is an intentionally vulnerable iOS app designed for hands-on security testing. It comes packed with over 20 known vulnerabilities and 10+ modules that replicate real-world app features—along with the security flaws that often come with them. Perfect for learning and experimenting in a realistic environment. iBugBazaar contains a variety of challenges, including:
+iBugBazaar is an open-source iOS app designed to be intentionally vulnerable, aimed at practical security testing. It features over 20 known vulnerabilities and more than 10 modules that simulate real app functionalities, as well as the common security flaws that occur.
 
 - API Key Storage
 - Sensitive Data Storage
