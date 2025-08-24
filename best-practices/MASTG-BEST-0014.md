@@ -1,25 +1,16 @@
 ---
-title: Hiding Sensitive Content on the Screen
-alias: hiding-sensitive-content-on-the-screen
+title: Preventing Screenshots and Screen Recording
+alias: preventing-screenshots-and-screen-recording
 id: MASTG-BEST-0014
 platform: android
 ---
 
-Ensure that the app hides sensitive content, such as credit card details and passcodes, from screen readers and system backgrounding. Malware may attempt to capture screen output to extract confidential information. Make sure that the keyboard view is also protected, as it may leak keystrokes from the passcode fields.
+Ensure the app hides sensitive content, such as card numbers and passcodes, from screenshots, screen recording, nonsecure displays, task switcher thumbnails, and remote screen sharing. Malware may capture screen output and extract confidential information. Protect on screen keyboards or custom keypad views as they may leak keystrokes from passcode fields. Screenshots can be saved in locations accessible to other apps or a local attacker.
 
-Screenshots may be saved in locations that are accessible to other applications or to an attacker with local access to the device.
-
-Use the code below to hide the content of the Activity.
-
-```kotlin
-window.setFlags(WindowManager.LayoutParams.FLAG_SECURE,
-                WindowManager.LayoutParams.FLAG_SECURE)
-
-setContentView(R.layout.activity_main)
-```
-
-Setting the `FLAG_SECURE` will make your screenshot black so that none confidential data is exposed.
+Setting [`FLAG_SECURE`](https://developer.android.com/security/fraud-prevention/activities#flag_secure) on the window prevents screenshots (or appear black), blocks screen recording, and hides content on nonsecure displays and in the system task switcher.
 
 | Without `FLAG_SECURE` | With `FLAG_SECURE` |
 |:----------------------:|:-----------------:|
 | <img src="../Document/Images/Chapters/0x05d/task-switcher-without-flag-secure.png" width="200px" /> | <img src="../Document/Images/Chapters/0x05d/task-switcher-with-flag-secure.png" width="200px" /> |
+
+You can follow the official documentation to implement `FLAG_SECURE` in your app, see ["Secure sensitive activities"](https://developer.android.com/security/fraud-prevention/activities).
