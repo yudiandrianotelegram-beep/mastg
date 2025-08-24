@@ -24,6 +24,4 @@ The output should include a list of locations where the relevant APIs are used.
 
 ## Evaluation
 
-The test case fails if you cannot find the relevant APIs on every UI component that displays sensitive data.
-
 The test case fails if the relevant APIs are missing or inconsistently applied on any UI component that displays sensitive data, or if code paths clear the protection without an adequate justification.
