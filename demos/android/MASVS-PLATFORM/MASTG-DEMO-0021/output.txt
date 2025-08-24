@@ -5,7 +5,8 @@
 └────────────────┘
                            
     MastgTest_reversed.java
-    ❯❱ [1mrules.flag_secure[0m
+     ❱ rules.mastg-android-flag-secure-enable-flags
           [MASVS-PLATFORM] Make sure you use this flag for all screens with sensitive data
                                                                                           
-           22┆ ((Activity) this.context).getWindow().setFlags(8192, 8192);
+           32┆ ((Activity) this.context).getWindow().addFlags(8192);
+
