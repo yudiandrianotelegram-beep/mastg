@@ -48,4 +48,3 @@ You can automatically evaluate the output using tools like `jq` as demonstrated 
 {{ evaluate.sh }}
 
 See @MASTG-TEST-0232 for more information.
-
