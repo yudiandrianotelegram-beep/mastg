@@ -3,7 +3,7 @@ title: References to APIs for Detecting and Preventing Screen Capturing
 platform: ios
 id: MASTG-TEST-0288
 type: [static]
-best-practices: [MASTG-BEST-0011]
+profiles: [L2]
 weakness: MASWE-0055
 ---
 

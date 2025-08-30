@@ -4,7 +4,6 @@ platform: ios
 id: MASTG-TEST-0290
 type: [static, manual]
 profiles: [L2]
-best-practices: [MASTG-BEST-0016]
 weakness: MASWE-0055
 prerequisites:
 - identify-sensitive-screens
