@@ -2,26 +2,26 @@
 title: Runtime Verification of Sensitive Content Exposure in Screenshots During App Backgrounding
 platform: android
 id: MASTG-TEST-0289
-type: [static]
+type: [static, manual]
 profiles: [L2]
 best-practices: [MASTG-BEST-0014]
 weakness: MASWE-0055
+prerequisites:
+- identify-sensitive-screens
 ---
 
 ## Overview
 
-This test verifies that the app hides sensitive content from the screen when it moves to the background. This is important because when an app enters the background, the system captures a screenshot of its current view, which might be accessed by attackers.
+This test verifies that the app hides sensitive content from the screen when it moves to the background. This is important because Android captures a task snapshot of the app UI when it moves to the background. This snapshot is used for the [Recents screen](https://developer.android.com/guide/components/activities/recents) and transitions, and can expose sensitive content if the app does not protect it.
 
 ## Steps
 
-1. Exercise your app until you get to a screen with confidential data.
-2. Move the app to the background.
-3. Use @MASTG-TECH-0002 to copy the screenshot taken by the system to your laptop for further analysis. The system stores the screenshots at their containers `/data/system_ce/0/snapshots` or `/data/system`.
-4. Verify that the screenshots don't display any confidential data.
+1. Exercise your app until you get to each of the screens identified as sensitive. While on each of those screens, move the app to the background (for example by pressing Home or opening the Recents screen and exiting it) and continue to the next screen.
+2. Once finished, use @MASTG-TECH-0002 to copy the screenshot taken by the system to your laptop for further analysis. The system stores the screenshots at their containers `/data/system_ce/0/snapshots` or `/data/system`.
 
 ## Observation
 
-The output should include a list of screenshots cached when app entered the background state.
+The output should include a collection of screenshots cached when app entered the background state.
 
 ## Evaluation
 
