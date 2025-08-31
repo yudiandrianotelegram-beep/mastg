@@ -2,6 +2,10 @@
 
 Tests are platform-specific and must be located under tests-beta/android/ or tests-beta/ios/, within the corresponding MASVS category. Their file names are the test IDs.
 
+Notes:
+
+- Tests with `platform: network` are still organized under the OS folder that the MASVS category belongs to (for example, Android network tests live under `tests-beta/android/MASVS-NETWORK/`).
+
 Tests have an overview and contain Steps which produce outputs called observations. After following the Steps you come up with an [Observation](https://docs.google.com/document/d/1EMsVdfrDBAu0gmjWAUEs60q-fWaOmDB5oecY9d9pOlg/edit?pli=1#heading=h.h9gqgz4hdubj) which you will [Evaluate](https://docs.google.com/document/d/1EMsVdfrDBAu0gmjWAUEs60q-fWaOmDB5oecY9d9pOlg/edit?pli=1#heading=h.lare0v58fwbf).
 
 Example:
@@ -39,7 +43,9 @@ Examples:
 
 #### platform
 
-The mobile platform. One of: ios, android.
+The mobile platform. One of: ios, android, network.
+
+- Use network for platform-agnostic traffic analysis tests where the checks are performed purely on captured/observed traffic (often paired with type: [network]).
 
 #### id
 
@@ -49,16 +55,30 @@ The test ID.
 
 The MASWE weakness ID the test references.
 
+- In YAML front matter, specify the bare identifier (for example, `weakness: MASWE-0069`). In body text, include the leading `@` (for example, @MASWE-0069).
+
 #### type
 
 One or more test types.
 
-Supported: static, dynamic, network, manual, filesystem.
+Supported: static, dynamic, network, manual, filesystem, developer.
+
+- developer: tests that work on developer artifacts or supply-chain outputs (for example SBOM, dependency manager lockfiles, scanner reports) rather than the built app.
 
 Example:
 
 ```md
 type: [static]
+```
+
+Examples with multiple types:
+
+```md
+type: [dynamic, manual]
+```
+
+```md
+type: [network]
 ```
 
 #### best-practices
@@ -75,9 +95,15 @@ best-practices: [MASTG-BEST-0001]
 
 This links to https://mas.owasp.org/MASTG/best-practices/MASTG-BEST-0001/
 
+Notes:
+
+- If no applicable best practices exist yet, you can omit the field or set an empty list: `best-practices: []`.
+
 #### prerequisites
 
 List prerequisites needed to execute or evaluate the test. Existing files are in prerequisites/. Create new ones if needed.
+
+- If there are no prerequisites, you can omit this field or use an empty list.
 
 Example:
 
@@ -89,7 +115,10 @@ prerequisites:
 
 #### profiles
 
-Specify MASVS profiles where the test applies. Valid values: L1, L2, P.
+Specify MASVS profiles where the test applies. Valid values: L1, L2, P, R.
+
+- P denotes Privacy.
+- R denotes Resilience.
 
 Example:
 
@@ -105,6 +134,10 @@ Include these if relevant:
 - `note:` short free-form note
 - `available_since:` minimum platform/API level
 - `deprecated_since:` last applicable platform/API level
+
+Notes:
+
+- For Android, available/deprecated API levels are integers (for example, `deprecated_since: 24`). For iOS, use the iOS release version (for example, `available_since: 13`).
 
 ### Markdown: Body
 

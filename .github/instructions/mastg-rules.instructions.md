@@ -1,6 +1,6 @@
 ## Rules
 
-SAST rules live in `rules` folder. They can be referenced and reused by the demos.
+SAST rules live in the `rules/` folder. They are referenced and reused by demos and should be stable and consistently named.
 
 ### Semgrep rules
 
@@ -10,22 +10,40 @@ SAST rules live in `rules` folder. They can be referenced and reused by the demo
 
 Tip: use [https://semgrep.dev/playground/new](https://semgrep.dev/playground/new) for experimentation.
 
-They must be named `mastg-<name of the test>.yaml` and follow valid syntax according to [https://semgrep.dev/docs/writing-rules/rule-syntax/](https://semgrep.dev/docs/writing-rules/rule-syntax/) 
+File naming and format
 
-* **id**:  same as the file name
+- Name files using the pattern: `mastg-<platform>-<short-topic>.(yml|yaml)` (for example, `mastg-android-non-random-use.yml`).
+- Use either `.yml` or `.yaml` consistently per file; both are accepted.
+- A file may contain one or more rules.
+
+Semgrep rules must follow valid syntax: [https://semgrep.dev/docs/writing-rules/rule-syntax/](https://semgrep.dev/docs/writing-rules/rule-syntax/)
+
+Recommended fields per rule
+
+* **id**: unique, stable identifier. For single-rule files, prefer matching the filename without extension. For multi-rule files, use a common prefix based on the filename and a descriptive suffix (for example, `mastg-android-data-unencrypted-shared-storage-no-user-interaction-mediastore`).
 * **severity**:
+  * INFO
   * WARNING
   * ERROR
-* **languages**: e.g. xaml, java (we don't create rules for kotlin as we only work with decompiled code which is in java)
+* **languages**: usually `xml` or `java` (we don’t create rules for Kotlin as we work with decompiled Java; use `xml` for AndroidManifest and resource rules).
 * **metadata**: must include summary
   * summary: Short description of the rule.
   * original_source: you may use rules from sources on the internet be sure to check that the license allows this and always link to the original source here. Modify the rule if needed and the license allows for it.
-* **message**: must start with the MASVS control ID and concisely explain what the rule is reporting.
+* **message**: must start with a MASVS identifier and concisely explain what the rule is reporting. Prefer a specific control when applicable (for example, `[MASVS-PLATFORM-2]`); otherwise, use the MASVS category tag (for example, `[MASVS-STORAGE]`).
 * **patterns**: see [https://semgrep.dev/docs/writing-rules/pattern-syntax/](https://semgrep.dev/docs/writing-rules/pattern-syntax/) 
 
-Do not include authors in the semgrep rules. If it was copied from some other place, **include the link to the original source**. Since many people will potentially contribute to the rule as part of the MASTG work, the authors will be calculated using git.
+Multiple rules per file
 
-Example:
+- When grouping related detections, you may define multiple rules in a single file. Ensure each rule’s `id` shares a sensible prefix and is unique.
+- Keep messages and severities aligned within the group; use `INFO` for inventory-style detections and `WARNING`/`ERROR` for clear weaknesses.
+
+General guidance
+
+- Do not include authors in the semgrep rules. If it was copied from some other place, **include the link to the original source**. Since many people will contribute, authorship is tracked via git history.
+- Keep messages concise and actionable; they should be understandable without reading the pattern body.
+- Test rules in the Semgrep Playground and against reversed code from the demos.
+
+Example (single rule):
 
 ```yml
 rules:
@@ -43,4 +61,29 @@ rules:
             - pattern-either:
                 - pattern: Math.random(...)
                 - pattern: (java.util.Random $X).$Y(...)
+```
+
+Example (multiple rules in one file):
+
+```yml
+rules:
+  - id: mastg-android-data-unencrypted-shared-storage-no-user-interaction-external-api-public
+    severity: WARNING
+    languages: [java]
+    metadata:
+      summary: Methods returning locations on shared external storage.
+    message: "[MASVS-STORAGE] Make sure to encrypt files at these locations if necessary"
+    pattern-either:
+      - pattern: $X.getExternalStorageDirectory(...)
+      - pattern: $X.getExternalStoragePublicDirectory(...)
+
+  - id: mastg-android-data-unencrypted-shared-storage-no-user-interaction-mediastore
+    severity: WARNING
+    languages: [java]
+    metadata:
+      summary: MediaStore API writes to external storage.
+    message: "[MASVS-STORAGE] Data written via MediaStore can be readable by other apps on older Android versions"
+    pattern-either:
+      - pattern: import android.provider.MediaStore
+      - pattern: $X.MediaStore
 ```

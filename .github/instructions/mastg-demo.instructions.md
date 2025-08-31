@@ -7,7 +7,7 @@ Demos live in `demos/android/` or `demos/ios/` under the corresponding MASVS cat
 * Markdown file: `MASTG-DEMO-xxx.md`
 * Code samples (e.g. .kt, .swift, .xml, .plist)
 * Testing code (e.g. sh, py)
-* Output files (e.g. txt, sarif)
+* Output files (e.g. txt, json, sarif)
 
 **Language:** The samples are written in **Kotlin** or **Swift**, depending on the platform. In some cases, the samples will also include configuration files such as AndroidManifest.xml or Info.plist.
 
@@ -35,6 +35,16 @@ run.sh*
 
 ### Markdown: Metadata
 
+#### id
+
+The demo ID. This should match the folder name.
+
+Example:
+
+```md
+id: MASTG-DEMO-0054
+```
+
 #### title
 
 The title should concisely express what the demo is about.
@@ -47,13 +57,13 @@ title: Common Uses of Insecure Random APIs
 
 #### platform
 
-The mobile platform. Can be one of: ios, android.
+The mobile platform. One of: ios, android.
 
 #### tools
 
 Tools used in the demo.
 
-They must be referenced using their IDs from [https://mas.owasp.org/MASTG/tools/](https://mas.owasp.org/MASTG/tools/) 
+Prefer referencing official tool IDs from https://mas.owasp.org/MASTG/tools/ when available (for example, `MASTG-TOOL-0031`). If an official ID is not available, you may use a well-known tool name (for example, `semgrep`).
 
 Example:
 
@@ -61,15 +71,46 @@ Example:
 tools: [MASTG-TOOL-0031]
 ```
 
+Example without an official ID:
+
+```md
+tools: [semgrep]
+```
+
 #### code
 
-The language in which the samples are written.
+The language(s) in which the samples are written. Multiple values are supported.
 
 Example:
 
 ```md
 code: [java]
 ```
+
+Multi-language example:
+
+```md
+code: [xml, kotlin]
+```
+
+#### kind
+
+Optional. When helpful, specify whether the demo demonstrates a passing or failing case.
+
+Valid values: `pass`, `fail`.
+
+Example:
+
+```md
+kind: pass
+```
+
+#### optional fields
+
+Include these if relevant:
+
+- `status:` draft, placeholder, deprecated
+- `note:` short free-form note providing additional context
 
 ### Markdown: Body
 
@@ -101,7 +142,7 @@ The snippet below shows sample code that sends sensitive data over the network u
 
 #### Steps
 
-A concise writeup following all steps from the test and including the relevant placeholders for testing code (e.g. SAST rules, run.sh files).
+A concise writeup following all steps from the linked test, including placeholders for testing code and scripts (for example, SAST rules, `run.sh`).
 
 Example:
 
@@ -117,7 +158,7 @@ Let's run our semgrep rule against the sample code.
 
 #### Observation
 
-A concise description of the observation for this specific demo including the relevant placeholders for output files (e.g. output.txt).
+A concise description of the observation for this specific demo including placeholders for output files (for example, `output.txt`, `output.json`).
 
 Example:
 
@@ -131,7 +172,7 @@ The rule has identified some instances in the code file where a non-random sourc
 
 #### Evaluation
 
-A concise explanation about how you applied the test “Evaluation” section to this specific demo. For example, if lines are present explain each line.
+A concise explanation of how you applied the test’s “Evaluation” section to this demo. If lines are present in the observation, explain each relevant line.
 
 Example:
 
@@ -188,7 +229,7 @@ For example, if you create a random number you can return it; or if you write fi
 
 Must contain comments indicating fail/pass and the test alias. This way we're able to validate that the output is correct (e.g. the code contains 3 failures of `MASTG-TEST-0204`). We can easily parse and count the comments and we can do the same in the output.
 
-Each FAIL/PASS comment must include the test Id and an explanation of why it files/passes.
+Each FAIL/PASS comment must include the test Id and an explanation of why it fails/passes.
 
 Example:
 
@@ -203,11 +244,11 @@ return number.nextInt(21);
 
 ### run.sh
 
-Every test that can be automated must contain a run.sh file
+Every demo that can be automated must contain a `run.sh` file that runs the analysis or instrumentation and generates the referenced output artifacts.
 
 #### Static
 
-Static tests must work using the **reverse-engineered** **code**. The app’s repos contain scripts or indications to obtain the reversed files.
+Static demos must work using the **reverse-engineered code**. The apps’ repositories contain scripts or instructions to obtain the reversed files.
 
 Example: semgrep
 

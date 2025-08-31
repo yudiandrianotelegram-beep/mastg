@@ -1,13 +1,15 @@
-# Porting MASTG v1 Tests to v2
+## Porting MASTG v1 tests to v2
 
-### Writing content
+### Before you start
+
+This document focuses on the porting workflow. For how to write v2 tests (front matter fields, required sections, styles), see `mastg-test.instructions.md`. Do not duplicate that guidance here—follow it when drafting the ported test.
 
 Check some of the current tests and take them as reference
 
 * tests-beta
 * demos
 
-Always take the most recent tests (the ones with the highest IDs) as reference/template.
+Always take the most recent tests (the ones with the highest IDs) as reference/template. Use `tests-beta` files as the canonical template for structure and front matter.
 
 Also review these. We’ll be using them and creating new ones as well:
 
@@ -34,9 +36,8 @@ Also review these. We’ll be using them and creating new ones as well:
 
 **About the IDs:**
 
-* Turn MASTG-TEST-0017 \-\> MASTG-TEST-0x17
-* If you need to split then do like MASTG-TEST-0x17-1, MASTG-TEST-0x17-2, MASTG-TEST-0x17-3 …
-* We’ll take care of fixing the IDs before merging.
+- Use the decimal ID format as seen in `tests-beta` (for example, `MASTG-TEST-0233`). Do not use the `0x` notation.
+- If a test must be split, suffix with a short decimal part during drafting (for example, `MASTG-TEST-0233-1`, `MASTG-TEST-0233-2`). Coordinate final IDs before merging.
 
 **Language**: use simple language, be concise and clear
 
@@ -62,48 +63,47 @@ Use the MASTG first, e.g. the guides for 0x04 (general), 0x05 (Android) and 0x06
 
 - [https://developer.apple.com/app-store/user-privacy-and-data-use/](https://developer.apple.com/app-store/user-privacy-and-data-use/) 
 
-## Porting tests to V2
+## Porting workflow
 
 Map to MASWE. You can check the new MASWE by searching for the old test ID in the **weaknesses/** directory. For example MASTG-TEST-0017.
 
-Create a branch for the ticket: port-MASTG-TEST-0017
+1) Create a branch for the ticket: `port-MASTG-TEST-0017` (adjust ID).
 
-If the “MASVS” folder does not exist yet, create it.
+2) Place files correctly: If the relevant `MASVS-*` folder does not exist yet under `tests-beta/<platform>/`, create it.
 
-Name the new file MASTG-TEST-0x17.md \-\> We’ll use the x to avoid ID collision and we’ll rename them later.
+3) Name the new file using the decimal ID (for example, `MASTG-TEST-0233.md`).
 
-* Turn MASTG-TEST-0017 \-\> MASTG-TEST-0x17
-* If you need to split then do like MASTG-TEST-0x17-1, MASTG-TEST-0x17-2, MASTG-TEST-0x17-3 …
+4) Decide scope changes: One v1 test may become one or multiple v2 tests (or be merged). Capture only what is testable and actionable; move general theory elsewhere (see below).
 
-One test in V1 may be turned into one or multiple tests in v2. Sometimes you'll find one sentence and that can be converted into a new test.
+5) Gather references: Search for references in `Document/`, `techniques/`, `tools/`, and `knowledge/`.
 
-Search for references in the current **Document/**
+6) Normalize background vs test logic: Add platform background as @MASTG-KNOW-xxxx references. If none exists, create a new knowledge page. Keep the test focused on detection and evaluation.
 
-And add them as 
+7) Link general concepts to Document: Some content belongs in the Document chapter. For example, general cryptography concepts such as symmetric/asymmetric encryption, hashing, signing, etc. If the knowledge is still in `Document/`, link to it.
 
-`["Confirm Credential Flow"](../../../Document/0x05f-Testing-Local-Authentication.md#confirm-credential-flow)`
+Example: ["Post Quantum"](https://mas.owasp.org/MASTG/Document/0x04g-Testing-Cryptography/#post-quantum)
 
-We don’t want to duplicate information. You may summarize part of the other section but what’s important is to explain what can go wrong with that feature or API. That may be explained in the referenced section or not but it must be in the test because that’s gonna be what we’re going to test for.
+8) Avoid duplication: You may summarize, but focus the test on how to detect the issue in Android/iOS and why it matters for this test.
 
-The thing we’re testing for must also have a very specific mitigation.
+9) Link mitigations: Ensure there is a clear mitigation in best-practices; add the reference in front matter (field defined in `mastg-test.instructions.md`).
 
-Part of the test not relevant? Remove and add a note in the ticket.
+10) Trim non-essential parts: If parts of the v1 test aren’t relevant, remove them and note it in the ticket.
 
-**Example:** In MASTG-TEST-0017, what’s written in dynamic analysis does not make sense: why should we validate that setUserAuthenticationValidityDurationSeconds are for real (we are not testing if Android features work; we assume they do). Maybe we could also use dynamic analysis but following a different approach. 
+**Example:** In MASTG-TEST-0017, what’s written in dynamic analysis does not make sense: why should we validate that `setUserAuthenticationValidityDurationSeconds` are for real (we are not testing if Android features work; we assume they do). Maybe we could also use dynamic analysis but following a different approach.
 
-Add missing links to docs. 
+11) Fill missing links to docs and developer references as needed.
 
 **Example:** this test and the referenced section both were missing links to [https://developer.android.com/](https://developer.android.com/) 
 
-## Important to consider when working on a test
+## Porting considerations
 
-V1 tests may include **techniques**, **tools** and even theory. Move that Info to the right place or create it and use references. e.g. @MASTG-TECH-0002
+V1 tests often include techniques, tools, and theory/knowledge. Move that to the right place (or create it) and reference it (for example, @MASTG-TECH-0002, @MASTG-KNOW-0011, @MASTG-TOOL-0097). In the test body, use `@` prefixes; in YAML front matter, use bare IDs without `@`. For exact field names and section structure, see `mastg-test.instructions.md`.
 
-Theory must be always linked to the 0x04/5/6 chapters.
+Theory must be always linked to the @MASTG-KNOW-xxxx components. If the theory is not covered yet, create a new knowledge page. If it's a general concept, it may still belong in the Document chapter under 0x04.
 
 Review existing content and **UPDATE** it. Especially references to Android/iOS versions and things you know have changed since the text was written.
 
-#### Add Best Practices
+#### Best practices linkage
 
 Best practices are platform specific and can be linked in the test metadata. Our automation creates a “Mitigations” section automatically.
 
@@ -113,24 +113,25 @@ Best practices are platform specific and can be linked in the test metadata. Our
 
 #### Deprecating V1 tests
 
-Add metadata:
+Add metadata to the v1 file:
 
-`"status: deprecated"`
-`"covered_by: [MASTG-TEST-02xx]" (leave empty if no coverage)`
-`deprecation_note: "New version available in MASTG V2"`
+- `status: deprecated`
+- `covered_by: [MASTG-TEST-02xx]` (leave empty if no coverage)
+- `deprecation_note: "New version available in MASTG V2"`
+
 If the test isn’t covered in MASVS v2, enter the reason why.
 
-If you don't know, open a ticket "Add Deprecation Note for MASTG-TEST-01xx".
+If you don't know, open a ticket "Add Deprecation Note for MASTG-TEST-00xx".
 
-### Threat based
+### Threat-based alignment
 
-Some things we're testing are only an issue if you consider an attacker with root access (typically L2 weaknesses). Double check that the conditions of the test matches the profile of the associated MASWE. IF THERE'S A MISMATCH WE MAY CREATE A SEPARATE MASWE FOR IT BECAUSE IT REPRESENTS A DIFFERENT RISK.
+Some findings apply only with stronger attacker capabilities (for example, root/jailbreak—typically L2). Double-check the threat model against the MASWE profile. If there’s a mismatch, consider creating a separate MASWE.
 
 [https://mas.owasp.org/MASTG/tests/android/MASVS-PLATFORM/MASTG-TEST-0010/\#dynamic-analysis](https://mas.owasp.org/MASTG/tests/android/MASVS-PLATFORM/MASTG-TEST-0010/#dynamic-analysis)
 
-Pay special attention to things like this. Indicate if the thing you're testing for requires root to be exploited or not.
+Indicate in the test whether exploitation requires root/jailbreak.
 
-*On devices supporting file-based encryption (FBE) ↗, snapshots are stored in the /data/system\_ce/\<USER\_ID\>/\<IMAGE\_FOLDER\_NAME\> folder. \<IMAGE\_FOLDER\_NAME\> depends on the vendor but most common names are snapshots and recent\_images. If the device doesn't support FBE, the /data/system/\<IMAGE\_FOLDER\_NAME\> folder is used.*
+> *On devices supporting file-based encryption (FBE) ↗, snapshots are stored in the /data/system\_ce/\<USER\_ID\>/\<IMAGE\_FOLDER\_NAME\> folder. \<IMAGE\_FOLDER\_NAME\> depends on the vendor but most common names are snapshots and recent\_images. If the device doesn't support FBE, the /data/system/\<IMAGE\_FOLDER\_NAME\> folder is used.*
 
 Accessing these folders and the snapshots requires root.
 
@@ -147,7 +148,7 @@ What other things to consider here?
 
 ### Code Snippets
 
-If the test has snippets, you can use them for the new demos. Rewrite any existing snippets and AVOID JAVA AND OBJECTIVE C.
+If the v1 test has snippets that inspire a demo, prefer Kotlin and Swift for new examples (avoid Java/Objective-C). You can create a demo with `status: draft` and finish later. See `mastg-demo.instructions.md` for demo authoring.
 
 You can create a demo **status: draft** and come back later to it. Just to ensure we extracted everything from V1. Create a ticket **"Finish Demo Draft MASTG-DEMO-xxxx"**
 
@@ -158,36 +159,23 @@ You can create a demo **status: draft** and come back later to it. Just to ensur
 
 List of apps to get ideas from, as inspiration. You may include "inspired by" to ref to the original source whenever our new content is similar enough.
 
-### NOTES
+### Notes (keep in mind while porting)
 
-* platform: android, ios or network
-*
-* A test MUST NOT describe the general problem *again*. That’s the Weakness’ job. Focus on how that thing happens in Android / iOS and why it’s important to do this test.
-* A test can be \[static, dynamic\] and the steps are describing both
-  * Example: MASTG-TEST-0209
-    * 1\. Run a static analysis tool such as @MASTG-TOOL-0073 on the app binary, or use a dynamic analysis tool like @MASTG-TOOL-0039, and look for uses of the cryptographic functions that generate keys.
-  * The demos are going to be more specific and address static and dynamic separately
-  * If you find an edge case, let’s discuss it.
-    * e.g. just because *the way* something is tested it could deserve a separate test with its own distinct overview, steps, etc.
+- A test must not describe the general problem again (that’s the Weakness’ job). Keep the test focused on detection and evaluation.
+- If you find an edge case, consider whether it deserves a separate test with distinct steps/evaluation.
 
 ### OS version
 
 **For Android:** We have agreed on supporting the **current version \- 5**. This gives a roughly 90% adoption rate on average. See [https://apilevels.com/](https://apilevels.com/) 
 
-If a test is not applicable anymore in some OS versions we can create it with a note of the versions where it applies. This way if you're testing an app that has a minsdk greater than that, you can discard that test.
+If a test is no longer applicable for some OS versions, add an applicability note so testers can discard it when not relevant.
 
-We will avoid creating demos for unsupported versions.
+Avoid creating demos for unsupported versions.
 
-e.g. webviews file access or defaults depend on this.
+For example, WebView file access or defaults depend on this.
 
-```md
----
-platform: android
-title: Insecure Implementation of Confirm Credentials
-id: MASTG-TEST-0x017
-type: [static, dynamic]
-available_since: 21
-deprecated_since: 29
-weakness: MASWE-0034
----
-```
+Refer to `mastg-test.instructions.md` for:
+
+- Exact front matter fields and examples
+- Required sections (Overview, Steps, Observation, Evaluation)
+- Title conventions, platforms, profiles, types, and optional fields
