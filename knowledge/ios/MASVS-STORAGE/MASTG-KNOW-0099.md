@@ -9,6 +9,6 @@ Manufacturers want to provide device users with an aesthetically pleasing effect
 Screenshots are stored inside the app's container at
 `/var/mobile/Containers/Data/Application/$APP_ID/Library/SplashBoard/Snapshots/sceneID:$APP_NAME-default/`. They are overwritten every time the app enters the background state.
 
-The system takes the screenshot after [`applicationDidEnterBackground`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/applicationdidenterbackground(_:)) completes, so it's common to display an overlay over the content of the screen. When an app comes back to the foreground, [`applicationWillEnterForeground`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/applicationwillenterforeground(_:)) is called. In @MASTG-BEST-0016 can find sample code that hides the content of the screen before backgrounding.
+The system takes the screenshot after [`applicationDidEnterBackground`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/applicationdidenterbackground(_:)) completes, so it's common to display an overlay over the content of the screen. When an app comes back to the foreground, [`applicationWillEnterForeground`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/applicationwillenterforeground(_:)) is called.
 
 You can find more information in ["Prepare your UI for the app snapshot"](https://developer.apple.com/documentation/uikit/preparing-your-ui-to-run-in-the-background#Prepare-your-UI-for-the-app-snapshot).
