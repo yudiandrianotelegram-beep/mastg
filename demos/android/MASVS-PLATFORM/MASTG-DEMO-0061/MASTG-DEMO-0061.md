@@ -1,9 +1,9 @@
 ---
 platform: android
 title: Uses of FLAG_SECURE with semgrep
-id: MASTG-DEMO-0021
+id: MASTG-DEMO-0061
 code: [kotlin]
-test: MASTG-TEST-0216
+test: MASTG-TEST-0291
 ---
 
 ### Sample
