@@ -41,7 +41,9 @@ The title should concisely express what the demo is about.
 
 Example:
 
-`title: Common Uses of Insecure Random APIs` 
+```md
+title: Common Uses of Insecure Random APIs
+```
 
 #### platform
 
@@ -55,7 +57,9 @@ They must be referenced using their IDs from [https://mas.owasp.org/MASTG/tools/
 
 Example:
 
-`tools: [MASTG-TOOL-0031]`
+```md
+tools: [MASTG-TOOL-0031]
+```
 
 #### code
 
@@ -63,7 +67,9 @@ The language in which the samples are written.
 
 Example:
 
-`code: [java]`
+```md
+code: [java]
+```
 
 ### Markdown: Body
 
@@ -73,19 +79,25 @@ Shortly describe the sample and specify the exact sample files used using this n
 
 **Single file:**
 
-`{{ MastgTest.kt }}`
+```md
+{{ MastgTest.kt }}
+```
 
 **Multi-file rendered in tabs:**
 
-`{{ MastgTest.kt # MastgTest_reversed.java }}`
+```md
+{{ MastgTest.kt # MastgTest_reversed.java }}
+```
 
 Example:
 
-`### Sample`
+```md
+### Sample
 
-``The snippet below shows sample code that sends sensitive data over the network using the `HttpURLConnection` class. The data is sent to `https://httpbin.org/post` which is a dummy endpoint that returns the data it receives.``
+The snippet below shows sample code that sends sensitive data over the network using the `HttpURLConnection` class. The data is sent to `https://httpbin.org/post` which is a dummy endpoint that returns the data it receives.
 
-`{{ MastgTest.kt # MastgTest_reversed.java }}`
+{{ MastgTest.kt # MastgTest_reversed.java }}
+```
 
 #### Steps
 
@@ -93,13 +105,15 @@ A concise writeup following all steps from the test and including the relevant p
 
 Example:
 
-`### Steps`
+```md
+### Steps
 
-`Let's run our semgrep rule against the sample code.`
+Let's run our semgrep rule against the sample code.
 
-`{{ ../../../../rules/mastg-android-non-random-use.yaml }}`
+{{ ../../../../rules/mastg-android-non-random-use.yaml }}
 
-`{{ run.sh }}`
+{{ run.sh }}
+```
 
 #### Observation
 
@@ -107,11 +121,13 @@ A concise description of the observation for this specific demo including the re
 
 Example:
 
-`### Observation`
+```md
+### Observation
 
-`The rule has identified some instances in the code file where a non-random source is used. The specified line numbers can be located in the original code for further investigation and remediation.`
+The rule has identified some instances in the code file where a non-random source is used. The specified line numbers can be located in the original code for further investigation and remediation.
 
-`{{ output.txt }}`
+{{ output.txt }}
+```
 
 #### Evaluation
 
@@ -119,16 +135,17 @@ A concise explanation about how you applied the test “Evaluation” section to
 
 Example:
 
-`### Evaluation`
+```md
+### Evaluation
 
-`Review each of the reported instances.`
+Review each of the reported instances.
 
-`- Line 12 seems to be used to generate random numbers for security purposes, in this case for generating authentication tokens.`
-``- Line 17 is part of the function `get_random`. Review any calls to this function to ensure that the random number is not used in a security-relevant context.``
-`- Line 27 is part of the password generation function which is a security-critical operation.`
+- Line 12 seems to be used to generate random numbers for security purposes, in this case for generating authentication tokens.
+- Line 17 is part of the function `get_random`. Review any calls to this function to ensure that the random number is not used in a security-relevant context.
+- Line 27 is part of the password generation function which is a security-critical operation.
 
-``Note that line 37 did not trigger the rule because the random number is generated using `SecureRandom` which is a secure random number generator.``
- 
+Note that line 37 did not trigger the rule because the random number is generated using `SecureRandom` which is a secure random number generator.
+```
 
 ### 
 
@@ -156,7 +173,9 @@ Must contain a summary as a comment.
 
 Example:
 
-`// SUMMARY: This sample demonstrates different common ways of insecurely generating random numbers in Java.`
+```kt
+// SUMMARY: This sample demonstrates different common ways of insecurely generating random numbers in Java.
+```
 
 #### Logic
 
@@ -173,11 +192,14 @@ Each FAIL/PASS comment must include the test Id and an explanation of why it fil
 
 Example:
 
-`// FAIL: [MASTG-TEST-0204] The app insecurely uses random numbers for generating authentication tokens.`
-`return r.nextDouble();`
+```kt
+// FAIL: [MASTG-TEST-0204] The app insecurely uses random numbers for generating authentication tokens.
+return r.nextDouble();
 
-`// PASS: [MASTG-TEST-0204] The app uses a secure random number generator.`
-`return number.nextInt(21);`
+
+// PASS: [MASTG-TEST-0204] The app uses a secure random number generator.
+return number.nextInt(21);
+```
 
 ### run.sh
 
