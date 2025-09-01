@@ -6,7 +6,7 @@ Standards for authoring reference application pages under `apps/`. These pages d
 
 - `apps/android/MASTG-APP-####.md`
 - `apps/ios/MASTG-APP-####.md`
-- `apps/index.md` is the catalog landing page
+- `apps/index.md` is the catalog landing page (don't edit it)
 
 ## File naming and IDs
 
@@ -44,16 +44,6 @@ title: Android UnCrackable L1
 platform: android
 source: https://mas.owasp.org/crackmes/Android#android-uncrackable-l1
 package: sg.vantagepoint.uncrackable1
----
-````
-
-```yaml
----
-title: iGoat-Swift
-platform: ios
-source: https://github.com/OWASP/iGoat-Swift
-package: org.owasp.iGoat-Swift
-status: placeholder
 ---
 ```
 
