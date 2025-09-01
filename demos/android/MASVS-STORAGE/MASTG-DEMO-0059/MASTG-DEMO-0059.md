@@ -32,7 +32,7 @@ The output shows all instances of strings written via `SharedPreferences` that w
 
 In output.json we can identify several entries that use the `SharedPreferences` API write strings to the app's local sandbox. In this case to `/data/data/org.owasp.mastestapp/shared_prefs/MasSharedPref_Sensitive_Data.xml`:
 
-- `putString` is used to write an unencrypted  `UnencryptedGitHubToken` of value `ghp_1234567890a...`
+- `putString` is used to write an unencrypted `UnencryptedGitHubToken` of value `ghp_1234567890a...`
 - `putString` is used to write an encrypted `EncryptedAwsKey` of value `V1QyXhGV88RQLmMjoTLLl...`
 - `putStringSet` is used to write an unencrypted `UnencryptedPreSharedKeys` set with values `MIIEvAIBADAN...` and `gJXS9EwpuzK8...`
 
@@ -40,8 +40,8 @@ We can use the values and try to trace them back to crypto method calls and chec
 
 - `V1QyXhGV88RQLmMjoTLLl...` is the return value of `Base64.encodeToString` for the input `0x5754325e1195f3c45...`
 - `0xa132cb95022985be` is the return value of `Cipher.doFinal` for the input `AKIAIOSFODNN7EXAMPLE`
-  
-However, we cannot find any calls to `Base64.encodeToString` or `Cipher.***` for the `preSharedKeys` values written by `putStringSet` (`MIIEvAIBADAN...` and `gJXS9EwpuzK8...`) .
+
+However, we cannot find any calls to `Base64.encodeToString` or `Cipher.***` for the `preSharedKeys` values written by `putStringSet` (`MIIEvAIBADAN...` and `gJXS9EwpuzK8...`).
 
 You can confirm this by reverse engineering the app and inspecting the code. Inspect the `stackTrace` of the `putString` and `putStringSet` entries, then go to the corresponding locations in the code. For example, go to the `org.owasp.mastestapp.MastgTest.mastgTest` method and try to trace back the input parameters to determine whether they are encrypted.
 
