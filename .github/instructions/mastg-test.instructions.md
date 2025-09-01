@@ -176,7 +176,7 @@ Example:
 Notes:
 
 - Always link to existing MASTG-TECH by ID (for example, @MASTG-TECH-0014)
-- Don't reference MASTG-TOOLs directly (this may still be happening in some tests and we must fix it.)
+- Don't reference MASTG tools directly (this may still be happening in some tests and we must fix it.)
 - Be consistent by reusing the steps from existing tests. Do not create new phrasing or wording when it's not necessary.
 
 #### Observation

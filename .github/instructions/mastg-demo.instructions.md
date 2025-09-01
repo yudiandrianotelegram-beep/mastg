@@ -188,7 +188,6 @@ Review each of the reported instances.
 Note that line 37 did not trigger the rule because the random number is generated using `SecureRandom` which is a secure random number generator.
 ```
 
-### 
 
 ### Code Samples {#code-samples}
 

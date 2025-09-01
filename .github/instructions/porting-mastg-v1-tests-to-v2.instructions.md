@@ -29,9 +29,9 @@ Also review these. We’ll be using them and creating new ones as well:
    3. You may use [chatGPT](https://chat.openai.com/) to create an initial draft and massage the content.
 2. Edit it yourself using **your knowledge**
 3. **Always include inline references** e.g. to
-   1. MASTG chapters
-   2. APIs
-   3. statements in the dev docs
+   - MASTG chapters
+   - APIs
+   - statements in the dev docs
 4. Before pushing, use [deepl write](https://www.deepl.com/en/write) to correct any mistakes and tweak phrasing (especially if you used chatGPT, use deepl to humanize the text)
 
 **About the IDs:**
@@ -155,7 +155,7 @@ You can create a demo **status: draft** and come back later to it. Just to ensur
 - [https://github.com/WithSecureLabs/sieve/](https://github.com/WithSecureLabs/sieve/)
 - Ovaa
 - MASTG playground
-- [https://mas.owasp.org/MASTG/apps/](https://mas.owasp.org/MASTG/apps/) 
+- [https://mas.owasp.org/MASTG/apps/](https://mas.owasp.org/MASTG/apps/)
 
 List of apps to get ideas from, as inspiration. You may include "inspired by" to ref to the original source whenever our new content is similar enough.
 
