@@ -159,11 +159,11 @@ A test must include one or more steps. Steps can be static, dynamic, manual, or 
 
 Example, to check app notifications:
 
-1. method trace for related APIs (dynamic)  
-2. use the app (manual)  
-3. reverse engineer code or use backtraces and hooks (static)  
-4. perform taint analysis with controlled values (dynamic)  
-5. grep traces or integrate "grep" in a frida script (static/dynamic)  
+1. method trace for related APIs (dynamic)
+2. use the app (manual)
+3. reverse engineer code or use backtraces and hooks (static)
+4. perform taint analysis with controlled values (dynamic)
+5. grep traces or integrate "grep" in a frida script (static/dynamic)
 
 Example:
 
@@ -175,14 +175,15 @@ Example:
 
 Notes:
 
-- Always link to existing techniques and tools by ID (for example, @MASTG-TECH-0014, @MASTG-TOOL-0031) to avoid duplication.  
-- In body text, use the leading @. In YAML front matter, omit the @ and use bare identifiers.
+- Always link to existing MASTG-TECH by ID (for example, @MASTG-TECH-0014)
+- Don't reference MASTG-TOOLs directly (this may still be happening in some tests and we must fix it.)
+- Be consistent by reusing the steps from existing tests. Do not create new phrasing or wording when it's not necessary.
 
 #### Observation
 
 The output you get after executing all steps. It serves as evidence.
 
-It should start with “The output should contain …”.
+It MUST start with “The output should contain ...”.
 
 Example:
 
@@ -196,7 +197,7 @@ The output should contain a list of locations where insecure random APIs are use
 
 Using the observation as input, describe how to evaluate it. State explicitly what makes the test fail.
 
-It should start with “The test case fails if …”.
+It MUST start with “The test case fails if ...”.
 
 Example:
 

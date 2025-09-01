@@ -18,66 +18,55 @@ Examples:
 
 ### Runtime and invocation
 
-- Prefer the V8 runtime unless a different engine is necessary; you can enforce it with `--runtime=v8`.
 - Typical spawn usage in `run.sh`:
-	- `frida -U -f <bundle_or_package_id> -l script.js --no-pause --runtime=v8 > output.txt`
-- Typical attach usage:
-	- `frida -U -n <process-name> -l script.js --runtime=v8 > output.txt`
+	- `frida -U -f <bundle_or_package_id> -l script.js -o output.txt`
 
 ### Coding conventions
 
 - Keep scripts self-contained (no external module imports).
 - Keep output concise and deterministic for Evaluation parsing.
-- Validate availability before hooking:
-	- iOS: `if (ObjC.available) { ... }`
-	- Android: `Java.perform(() => { ... })`
 - Check class/method existence; log a clear message if missing.
 - Avoid global side effects; scope variables within hooks/functions.
 - Logging: prefer `console.log()`; add short section headers only when helpful.
 - Backtraces: use `DebugSymbol.fromAddress` and cap lines.
 - In `onEnter/onLeave`, capture context first (for example, `const ctx = this.context;`) before using nested arrow functions.
 
-### iOS patterns
+### Inspiration
 
-- Hook Objective-C methods with explicit `-` (instance) or `+` (class) signatures.
-- Example (LAContext evaluatePolicy):
+- Don't reinvent the wheel when something already exists. Use existing open-source sources when available, for example https://codeshare.frida.re/browse.
+- If you use a source be sure to document it and give creadit to the author. Include a link to the original source in a comment at the beginning of the frida script.
 
-````javascript
-if (ObjC.available && ObjC.classes.LAContext) {
-	const method = ObjC.classes.LAContext["- evaluatePolicy:localizedReason:reply:"];
-	if (method) {
-		Interceptor.attach(method.implementation, {
-			onEnter(args) {
-				const ctx = this.context;
-				const LAPolicy = { 1: ".deviceOwnerAuthenticationWithBiometrics", 2: ".deviceOwnerAuthentication" };
-				const policy = args[2].toInt32();
-				console.log(`LAContext.evaluatePolicy called with ${LAPolicy[policy] || "Unknown"} (${policy})`);
-				const bt = Thread.backtrace(ctx, Backtracer.ACCURATE).slice(0, 8).map(DebugSymbol.fromAddress);
-				console.log("Backtrace:\n" + bt.join("\n"));
-			}
-		});
-	} else {
-		console.log("LAContext.evaluatePolicy not found");
-	}
-} else {
-	console.log("ObjC runtime not available or LAContext missing");
-}
-````
+Example:
 
-### Android patterns
+```js
+// SOURCE: https://codeshare.frida.re/@TheDauntless/disable-flutter-tls-v1/
 
-- Wrap hooks in `Java.perform` and use `Java.use` to access classes.
-- Example:
+// Configuration object containing patterns to locate the ssl_verify_peer_cert function for different platforms and architectures.
+var config = {
+    "ios":{
+        "modulename": "Flutter",
+        "patterns":{
+            "arm64": [
+				...
+```
 
-````javascript
-Java.perform(() => {
-	const HttpsURLConnection = Java.use('javax.net.ssl.HttpsURLConnection');
-	HttpsURLConnection.setHostnameVerifier.overload('javax.net.ssl.HostnameVerifier').implementation = function (verifier) {
-		console.log('HttpsURLConnection.setHostnameVerifier called');
-		return this.setHostnameVerifier(verifier);
-	};
+```js
+// SOURCE: https://github.com/iddoeldor/frida-snippets?tab=readme-ov-file#os-log
+
+var m = 'libsystem_trace.dylib';
+// bool os_log_type_enabled(os_log_t oslog, os_log_type_t type);
+var isEnabledFunc = Module.findExportByName(m, 'os_log_type_enabled');
+// _os_log_impl(void *dso, os_log_t log, os_log_type_t type, const char *format, uint8_t *buf, unsigned int size);
+var logFunc = Module.findExportByName(m, '_os_log_impl');
+
+// Enable all logs
+Interceptor.attach(isEnabledFunc, {
+  onLeave: function (ret) {
+    ret.replace(0x1);
+  }
 });
-````
+...
+```
 
 ### Logging and outputs
 
@@ -91,21 +80,4 @@ Java.perform(() => {
 - If a symbol/method is missing, log and continue.
 - Spawn vs attach: use `-f` for early instrumentation when needed.
 - Consider stripped binaries and symbol resolution; prefer Objective-C/Java-level hooks over raw native symbols where possible.
-
-### Cross-links
-
-- Tools: @MASTG-TOOL-0031 (Frida)
-- Techniques: @MASTG-TECH-0045 (Runtime Reverse Engineering), @MASTG-TECH-0015 / @MASTG-TECH-0067 (Dynamic Analysis)
-
-### Alignment with Tools/Frida
-
-- The authoritative reference for installing, configuring, and troubleshooting Frida lives under Tools: @MASTG-TOOL-0031. Do not duplicate setup steps in demos; instead, link to the Tools page.
 - Version compatibility: ensure `frida-tools` (CLI on the host) and the device runtime (for example, `frida-server` on Android or injected runtime on iOS) use matching major/minor versions (17.x with 17.x).
-- Device and transport flags: align with Tools documentation and prefer these consistently in `run.sh`:
-	- `-U` USB default device
-	- `-D <id>` a specific device by ID
-	- `-H <host:port>` network/remote device (for example, when port-forwarding or remote frida-server)
-- Platform notes (defer details to Tools page):
-	- Android: frida-server typically runs on-device; you may use adb port-forwarding when targeting `-H`.
-	- iOS: non-jailbroken workflows don’t need frida-server; rely on USB transport. Jailbroken workflows might use frida-server; follow the Tools guidance.
-- Demo authors should: link to Tools for environment prep, keep `script.js` runtime-agnostic, and focus scripts on instrumentation logic, not environment management.

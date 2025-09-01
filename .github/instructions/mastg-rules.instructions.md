@@ -6,7 +6,7 @@ SAST rules live in the `rules/` folder. They are referenced and reused by demos 
 
 [https://semgrep.dev/docs/getting-started/quickstart/](https://semgrep.dev/docs/getting-started/quickstart/)
 [https://semgrep.dev/learn](https://semgrep.dev/learn)
-[https://academy.semgrep.dev/courses/secure-guardrails](https://academy.semgrep.dev/courses/secure-guardrails) 
+[https://academy.semgrep.dev/courses/secure-guardrails](https://academy.semgrep.dev/courses/secure-guardrails)
 
 Tip: use [https://semgrep.dev/playground/new](https://semgrep.dev/playground/new) for experimentation.
 
@@ -18,19 +18,19 @@ File naming and format
 
 Semgrep rules must follow valid syntax: [https://semgrep.dev/docs/writing-rules/rule-syntax/](https://semgrep.dev/docs/writing-rules/rule-syntax/)
 
-Recommended fields per rule
+Required fields per rule:
 
-* **id**: unique, stable identifier. For single-rule files, prefer matching the filename without extension. For multi-rule files, use a common prefix based on the filename and a descriptive suffix (for example, `mastg-android-data-unencrypted-shared-storage-no-user-interaction-mediastore`).
-* **severity**:
-  * INFO
-  * WARNING
-  * ERROR
-* **languages**: usually `xml` or `java` (we don’t create rules for Kotlin as we work with decompiled Java; use `xml` for AndroidManifest and resource rules).
-* **metadata**: must include summary
-  * summary: Short description of the rule.
-  * original_source: you may use rules from sources on the internet be sure to check that the license allows this and always link to the original source here. Modify the rule if needed and the license allows for it.
-* **message**: must start with a MASVS identifier and concisely explain what the rule is reporting. Prefer a specific control when applicable (for example, `[MASVS-PLATFORM-2]`); otherwise, use the MASVS category tag (for example, `[MASVS-STORAGE]`).
-* **patterns**: see [https://semgrep.dev/docs/writing-rules/pattern-syntax/](https://semgrep.dev/docs/writing-rules/pattern-syntax/) 
+- **id**: unique, stable identifier. For single-rule files, prefer matching the filename without extension. For multi-rule files, use a common prefix based on the filename and a descriptive suffix (for example, `mastg-android-data-unencrypted-shared-storage-no-user-interaction-mediastore`).
+- **severity**:
+    - INFO
+    - WARNING
+    - ERROR
+- **languages**: usually `xml` or `java` (we don’t create rules for Kotlin as we work with decompiled Java; use `xml` for AndroidManifest and resource rules).
+- **metadata**: must include summary
+    - summary: Short description of the rule.
+    - original_source: you may use rules from sources on the internet be sure to check that the license allows this and always link to the original source here. Modify the rule if needed and the license allows for it.
+- **message**: must start with a MASVS identifier and concisely explain what the rule is reporting. Prefer a specific control when applicable (for example, `[MASVS-PLATFORM-2]`); otherwise, use the MASVS category tag (for example, `[MASVS-STORAGE]`).
+- **patterns**: see [https://semgrep.dev/docs/writing-rules/pattern-syntax/](https://semgrep.dev/docs/writing-rules/pattern-syntax/)
 
 Multiple rules per file
 
