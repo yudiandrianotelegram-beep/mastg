@@ -10,9 +10,32 @@ weakness: MASWE-0055
 
 ## Overview
 
-This test verifies whether an app references Android screen capture prevention APIs. On Android, developers can prevent screenshots and nonsecure display mirroring using [`FLAG_SECURE`](https://developer.android.com/security/fraud-prevention/activities#flag_secure). When set, Android blocks screenshots and prevents content from appearing on a nonsecure display, including remote screen sharing. Users see a blank screen if they attempt a screenshot or when the app moves to the background.
+This test verifies whether an app references Android screen capture prevention APIs. On Android, developers can prevent screenshots and non-secure display mirroring using [`FLAG_SECURE`](https://developer.android.com/security/fraud-prevention/activities#flag_secure). When set, Android blocks screenshots and prevents content from appearing on a non-secure display, including remote screen sharing. Screenshots are blocked (resulting images are blank/obscured and/or the system shows a policy message), and the app's content is not shown in Recents when backgrounded.
 
-Developers typically apply the flag with [`addFlags()`](https://developer.android.com/reference/android/view/Window#addFlags(int)) or [`setFlags()`](https://developer.android.com/reference/android/view/Window#setFlags(int,int)). Common failure modes include not setting `FLAG_SECURE` on all sensitive screens or clearing the flag during transitions e.g., using [`clearFlags()`](https://developer.android.com/reference/android/view/Window#clearFlags(int)) or `setFlags()`.
+**WindowManager-based UI Components:**
+
+Developers must set `FLAG_SECURE` on each window that displays sensitive content. Common components include Activities, Dialogs, DialogFragments, AlertDialogs, and PopupWindows or any custom Window via WindowManager.
+
+The flag is typically applied with [`addFlags()`](https://developer.android.com/reference/android/view/Window#addFlags(int)) or [`setFlags()`](https://developer.android.com/reference/android/view/Window#setFlags(int,int)). Common failure modes include not setting `FLAG_SECURE` on all sensitive screens or clearing the flag during transitions e.g., using [`clearFlags()`](https://developer.android.com/reference/android/view/Window#clearFlags(int)) or `setFlags()`.
+
+**Compose Dialogs:**
+
+In Compose dialogs, developers can set the secure policy which enables or disables the `FLAG_SECURE` flag to the dialog window using:
+
+- [`SecureOn`](https://developer.android.com/reference/kotlin/androidx/compose/ui/window/SecureFlagPolicy#SecureOn)
+- [`Inherit`](https://developer.android.com/reference/kotlin/androidx/compose/ui/window/SecureFlagPolicy#Inherit)
+- [`SecureOff`](https://developer.android.com/reference/kotlin/androidx/compose/ui/window/SecureFlagPolicy#SecureOff)
+
+**Recents Screenshots:**
+
+Starting with Android 13 (API level 33), developers can disable Recents screenshots using [`setRecentsScreenshotEnabled()`](https://developer.android.com/reference/android/app/Activity#setRecentsScreenshotEnabled(boolean)):
+
+- This prevents sensitive content from appearing in the system-generated snapshots used for the Recents screen:
+    - the snapshots saved to `/data/system_ce/<user_id>/snapshots` will be blank/obscured.
+    - the previews blank after the user switches away from the app completely, similar to the behavior of `FLAG_SECURE`
+- It does not prevent user-initiated screenshots or screen recordings.
+    - Users can take screenshots using the hardware shortcut and the content will appear in those screenshots.
+    - Tapping "Screenshot" in Recents will not produce a snapshot (the system may show a policy message depending on device/ROM).
 
 ## Steps
 
@@ -25,3 +48,11 @@ The output should include a list of locations where the relevant APIs are used.
 ## Evaluation
 
 The test case fails if the relevant APIs are missing or inconsistently applied on any UI component that displays sensitive data, or if code paths clear the protection without an adequate justification.
+
+NOTE: Detecting all possible instances of `FLAG_SECURE` can be challenging:
+
+- This flag cannot be simply applied globally, every component that creates a window must explicitly set this flag, e.g. Activities, Dialogs, DialogFragments, AlertDialog, PopupWindow or any custom Window via WindowManager. Sometimes apps use a base UI class and make all sensitive screens inherit it.
+- The lifecycle of the app must be considered, as the flag needs to be set whenever a new window is created. For example, trying to add the flag in the `onPause()` isn't effective, as the preview is created before this method is called.
+- Special care must be taken with fragments and their lifecycle, as they can be added or removed dynamically.
+
+Also note that even if the flag is correctly set, the content isn't obscured right away when the user switches away from the app. The user must manually switch to another app or home screen for the content to be obscured.
