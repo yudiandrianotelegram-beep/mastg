@@ -83,25 +83,3 @@ rules:
           - metavariable-regex:
               metavariable: $P
               regex: "SecureFlagPolicy^(?!\\.SecureOn$).+"
-
-  - id: android-set-recents-screenshot-enabled
-    languages: [java]
-    severity: INFO
-    metadata:
-      category: screen-capture
-      summary: Application sets recents screenshot enabled to true
-    message: "[MASVS-PLATFORM] Application sets recents screenshot enabled to true."
-    pattern-either:
-      - pattern: $A.setRecentsScreenshotEnabled(true)
-      - pattern: setRecentsScreenshotEnabled(true)
-
-  - id: android-set-recents-screenshot-disabled
-    languages: [java]
-    severity: WARNING
-    metadata:
-      category: screen-capture
-      summary: Application sets recents screenshot enabled to false
-    message: "[MASVS-PLATFORM] Application sets recents screenshot enabled to false."
-    pattern-either:
-      - pattern: $A.setRecentsScreenshotEnabled(false)
-      - pattern: setRecentsScreenshotEnabled(false)
