@@ -1,7 +1,10 @@
 package org.owasp.mastestapp;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.view.Window;
 import kotlin.Metadata;
 import kotlin.jvm.internal.Intrinsics;
 
@@ -30,7 +33,20 @@ public final class MastgTest {
     public final String mastgTest() {
         if (this.context instanceof Activity) {
             ((Activity) this.context).getWindow().addFlags(8192);
-            return "SUCCESS!!\n\nThe FLAG_SECURE has been set";
+            ((Activity) this.context).getWindow().setFlags(8192, 8192);
+            ((Activity) this.context).getWindow().setFlags(0, 8192);
+            AlertDialog dialog = new AlertDialog.Builder(this.context).setTitle("Secure dialog").setMessage("FLAG_SECURE is applied to this dialog.").setPositiveButton("OK", (DialogInterface.OnClickListener) null).create();
+            dialog.show();
+            Window window = dialog.getWindow();
+            if (window != null) {
+                window.setFlags(8192, 8192);
+            }
+            Window window2 = dialog.getWindow();
+            if (window2 != null) {
+                window2.clearFlags(8192);
+                return "SUCCESS!!\n\nFLAG_SECURE has been set for the Activity window";
+            }
+            return "SUCCESS!!\n\nFLAG_SECURE has been set for the Activity window";
         }
         return "ERROR: Context is not an Activity";
     }
