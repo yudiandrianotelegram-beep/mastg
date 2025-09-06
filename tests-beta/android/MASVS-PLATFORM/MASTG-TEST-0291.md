@@ -12,11 +12,24 @@ weakness: MASWE-0055
 
 This test verifies whether an app references Android screen capture prevention APIs. On Android, developers can prevent screenshots and non-secure display mirroring using [`FLAG_SECURE`](https://developer.android.com/security/fraud-prevention/activities#flag_secure). When set, Android blocks screenshots and prevents content from appearing on a non-secure display, including remote screen sharing. Screenshots are blocked (resulting images are blank/obscured and/or the system shows a policy message), and the app's content is not shown in Recents when backgrounded.
 
-**WindowManager-based UI Components:**
+**UI Components Exposing Window Getters or LayoutParams:**
 
-Developers must set `FLAG_SECURE` on each window that displays sensitive content. Common components include Activities, Dialogs, DialogFragments, AlertDialogs, and PopupWindows or any custom Window via WindowManager.
+`FLAG_SECURE` is applied per-window. Any UI that creates its own `Window` must set it if sensitive content can appear there. This includes all components that:
 
-The flag is typically applied with [`addFlags()`](https://developer.android.com/reference/android/view/Window#addFlags(int)) or [`setFlags()`](https://developer.android.com/reference/android/view/Window#setFlags(int,int)). Common failure modes include not setting `FLAG_SECURE` on all sensitive screens or clearing the flag during transitions e.g., using [`clearFlags()`](https://developer.android.com/reference/android/view/Window#clearFlags(int)) or `setFlags()`.
+- can call `getWindow()` (e.g., `Activity`, `Dialog`, `Presentation`)
+- expose `.window` (e.g., `DialogFragment`)
+- allow setting `LayoutParams` (e.g., overlays or custom views added with `WindowManager.addView()`)
+
+Other components that create separate windows but do not expose `getWindow()` directly (e.g., `PopupWindow`) cannot have `FLAG_SECURE` applied directly.
+
+The flag is applied with [`addFlags()`](https://developer.android.com/reference/android/view/Window#addFlags(int)) or [`setFlags()`](https://developer.android.com/reference/android/view/Window#setFlags(int,int)). Common failure modes include:
+
+- Missing a window: not setting `FLAG_SECURE` on all windows that can show sensitive data.
+- Lifecycle gaps: setting too late or clearing during transitions (e.g., using [`clearFlags()`](https://developer.android.com/reference/android/view/Window#clearFlags(int)) or `setFlags()` without re-applying). Remember previews for Recents can be captured before callbacks like `onPause()`.
+
+**SurfaceViews:**
+
+`SurfaceView` and its subclasses (e.g., `VideoView`, `GLSurfaceView`) create a separate surface that is not protected by `FLAG_SECURE` even if the containing window has it set. To protect content in a `SurfaceView`, developers must use [`setSecure(true)`](https://developer.android.com/reference/android/view/SurfaceView#setSecure(boolean)) before the surface view's containing window is attached to the window manager.
 
 **Compose Dialogs:**
 
