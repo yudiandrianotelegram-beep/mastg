@@ -10,7 +10,7 @@ test: MASTG-TEST-0291
 
 The sample demonstrates multiple ways of preventing screenshots of sensitive content in two Android components: an Activity and a standard Dialog. It also demonstrates incorrect ways of removing the screenshot prevention.
 
-{{ MastgTest.kt # MastgTest_reversed.java # MastgTestKt_reversed.java }}
+{{ MastgTest.kt # MastgTest_reversed.java }}
 
 ### Steps
 
