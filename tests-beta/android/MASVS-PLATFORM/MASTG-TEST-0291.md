@@ -15,11 +15,11 @@ This test verifies whether an app references Android screen capture prevention A
 
 `FLAG_SECURE` is applied per window. Any UI that creates its own `Window` must set it if sensitive content can appear there. This includes all components that:
 
-- can call `getWindow()` (e.g., `Activity`, `Dialog`, `Presentation`)
+- can call `getWindow()` (e.g., `Activity`, `Dialog` and subclasses, `Presentation`)
 - expose `.window` (e.g., `DialogFragment`)
 - allow setting `LayoutParams` (e.g., overlays or custom views added with `WindowManager.addView()`)
 
-Other components that create separate windows but do not expose `getWindow()` directly (e.g., `PopupWindow`) cannot have `FLAG_SECURE` applied directly.
+Other components that create separate windows but do not expose `getWindow()` directly (e.g., `PopupWindow` or `Toast`) cannot have `FLAG_SECURE` applied directly.
 
 The flag is applied with [`addFlags()`](https://developer.android.com/reference/android/view/Window#addFlags(int)) or [`setFlags()`](https://developer.android.com/reference/android/view/Window#setFlags(int,int)). Common failure modes include:
 
