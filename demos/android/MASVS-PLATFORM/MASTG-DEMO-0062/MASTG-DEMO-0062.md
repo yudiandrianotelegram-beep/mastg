@@ -3,12 +3,12 @@ platform: android
 title: Enabling Screenshots in Recents via setRecentsScreenshotEnabled with semgrep
 id: MASTG-DEMO-0062
 code: [kotlin]
-test: MASTG-TEST-0291
+test: MASTG-TEST-0292
 ---
 
 ### Sample
 
-The sample demonstrates how an app does not prevent screenshots/leaks of sensitive content in Android 14+ recents via calls to `setRecentsScreenshotEnabled(true)`.
+The sample demonstrates how an app does not prevent screenshots/leaks of sensitive content in the Recents screen via calls to `setRecentsScreenshotEnabled(true)`.
 
 {{ MastgTest.kt # MastgTest_reversed.java }}
 
@@ -28,4 +28,4 @@ The rule has identified one location in the code file where the app calls `setRe
 
 ### Evaluation
 
-The test fails because the app calls `setRecentsScreenshotEnabled(true)` on Android 14+, which allows screenshots in recents and may lead to sensitive data exposure. The app does not use `FLAG_SECURE` or any other screenshot prevention mechanism.
+The test fails because the app calls `setRecentsScreenshotEnabled(true)`, which allows screenshots in recents and may lead to sensitive data exposure. The app does not use `FLAG_SECURE` or any other screenshot prevention mechanism.

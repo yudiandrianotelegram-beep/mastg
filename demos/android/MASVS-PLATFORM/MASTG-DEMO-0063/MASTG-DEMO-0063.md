@@ -3,7 +3,7 @@ platform: android
 title: Incorrectly Preventing Screenshots with SecureFlagPolicy in Compose Dialogs with semgrep
 id: MASTG-DEMO-0063
 code: [kotlin]
-test: MASTG-TEST-0291
+test: MASTG-TEST-0293
 ---
 
 ### Sample
