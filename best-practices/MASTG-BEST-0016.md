@@ -1,0 +1,31 @@
+---
+title: Use `SECURE_FLAG` to Prevent Screenshots and Screen Recording
+alias: use-secure-flag-to-prevent-screenshots-and-screen-recording
+id: MASTG-BEST-0016
+parent: MASTG-BEST-0014
+platform: android
+component: android.view.Window
+available_since: 1
+---
+
+Setting [`FLAG_SECURE`](https://developer.android.com/security/fraud-prevention/activities#flag_secure) on a window prevents screenshots (or makes them appear black), blocks screen recording, and hides content on non-secure displays and ensures that the app's content is not shown in the [Recents screen](https://developer.android.com/guide/components/activities/recents) when backgrounded.
+
+<div style="display:flex; flex-wrap:wrap; gap:16px; align-items:flex-start; margin:16px 0;">
+  <figure style="flex:1 1 220px; margin:0; text-align:center;">
+    <img src="Images/Chapters/0x05d/task-switcher-without-flag-secure.png" width="200" alt="Task switcher without FLAG_SECURE">
+    <figcaption>Without <code>FLAG_SECURE</code></figcaption>
+  </figure>
+  <figure style="flex:1 1 220px; margin:0; text-align:center;">
+    <img src="Images/Chapters/0x05d/task-switcher-with-flag-secure.png" width="200" alt="Task switcher with FLAG_SECURE">
+    <figcaption>With <code>FLAG_SECURE</code></figcaption>
+  </figure>
+</div>
+
+The flag is applied with [`addFlags()`](https://developer.android.com/reference/android/view/Window#addFlags(int)) or [`setFlags()`](https://developer.android.com/reference/android/view/Window#setFlags(int,int)). Common best practices include:
+
+- This flag cannot be applied globally. Apply the flag to all windows that can show sensitive data, including `Activity`, `Dialog`, `DialogFragment`, `AlertDialog`, or any custom window added via `WindowManager`. Sometimes apps use a base UI class and make all sensitive screens inherit it.
+- Set the flag as early as possible in the lifecycle, before sensitive content is rendered. For example, setting it in `onCreate()` is better than `onResume()`, and trying to add the flag in `onPause()` is not effective, as the preview is created before this method is called.
+- Be careful with fragments and their lifecycle, as they can be added or removed dynamically.
+- Avoid clearing the flag during transitions (e.g., using [`clearFlags()`](https://developer.android.com/reference/android/view/Window#clearFlags(int)) or `setFlags()` without reapplying), as sensitive previews for the Recents screen can be captured before callbacks like `onPause()`.
+
+For more information, refer to the official documentation: ["Secure sensitive activities"](https://developer.android.com/security/fraud-prevention/activities).
