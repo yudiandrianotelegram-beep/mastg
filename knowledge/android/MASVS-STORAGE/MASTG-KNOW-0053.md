@@ -2,7 +2,6 @@
 masvs_category: MASVS-STORAGE
 platform: android
 title: Screenshots
-best-practices: [MASTG-BEST-0014]
 ---
 
 ## System-Generated Snapshots

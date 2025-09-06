@@ -3,6 +3,7 @@ title: Use `SECURE_FLAG` to Prevent Screenshots and Screen Recording
 alias: use-secure-flag-to-prevent-screenshots-and-screen-recording
 id: MASTG-BEST-0016
 parent: MASTG-BEST-0014
+knowledge: MASTG-KNOW-0053
 platform: android
 component: android.view.Window
 available_since: 1
@@ -31,5 +32,8 @@ The flag is applied with [`addFlags()`](https://developer.android.com/reference/
 - Set the flag as early as possible in the lifecycle, before sensitive content is rendered. For example, setting it in `onCreate()` is better than `onResume()`, and trying to add the flag in `onPause()` is not effective, as the preview is created before this method is called.
 - Be careful with fragments and their lifecycle, as they can be added or removed dynamically.
 - Avoid clearing the flag during transitions (e.g., using [`clearFlags()`](https://developer.android.com/reference/android/view/Window#clearFlags(int)) or `setFlags()` without reapplying), as sensitive previews for the Recents screen can be captured before callbacks like `onPause()`.
+
+Note that you cannot set `FLAG_SECURE` directly on components that do not expose `getWindow()`, such as `android.widget.PopupWindow` or `android.widget.Toast`.
+- `android.view.View` and subclasses like `android.widget.TextView`, `android.widget.EditText`, `android.webkit.WebView`, `android.view.TextureView`, etc. don't support `FLAG_SECURE`. You must secure their containing Window instead. Alternatively, you can mask passwords and other sensitive by following the recommendations in @MASTG-BEST-0019.
 
 For more information, refer to the official documentation.
