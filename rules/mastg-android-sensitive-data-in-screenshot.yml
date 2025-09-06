@@ -82,4 +82,4 @@ rules:
           - pattern: new DialogProperties($A, $B, $P, ...)
           - metavariable-regex:
               metavariable: $P
-              regex: "SecureFlagPolicy^(?!\\.SecureOn$).+"
+              regex: "^SecureFlagPolicy(?!\\.SecureOn$).+"
