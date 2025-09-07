@@ -1,5 +1,5 @@
 ---
-masvs_category: MASVS-STORAGE
+masvs_category: MASVS-PLATFORM
 platform: android
 title: Screenshots
 ---
