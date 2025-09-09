@@ -15,7 +15,7 @@ var target = {
         "getInstance",
         "doFinal",
         "init",
-        "update",
+        "update"
       ]
     },
     {
