@@ -72,9 +72,9 @@ After slightly processing the output using `jq`, we can get a high level view of
 
 Here we can see that:
 
-- the value `ghp_1234567890a...` is not preceeded by any Cipher calls when written via `putString`.
+- the value `ghp_1234567890a...` is not preceded by any Cipher calls when written via `putString`.
 - the value `V1QyXhGV88RQLmMjoTLLl...` has several calls to Cipher and then a `putString`.
-- the set of values `MIIEvAIBADAN...` and `gJXS9EwpuzK8...` are also not preceeded by any Cipher calls when written via `putStringSet`.
+- the set of values `MIIEvAIBADAN...` and `gJXS9EwpuzK8...` are also not preceded by any Cipher calls when written via `putStringSet`.
 
 #### Option 2: Pattern matching
 
@@ -115,7 +115,7 @@ Entropy:     5.171928
 The provided `output.json` in this case allows you to trace the written values back to cryptographic method calls and this way find out whether they are encrypted. For example, let's analyze the `EncryptedAwsKey` with value `V1QyXhGV88RQLmMjoTLLl...`:
 
 - `V1QyXhGV88RQLmMjoTLLl...` is the return value of `Base64.encodeToString` for the input `0x5754325e1195f3c45...`.
-- `0xa132cb95022985be` is the return value of `Cipher.doFinal` for the input `AKIAIOSFODNN7EXAMPLE`.
+- `0xa132cb95022985be` is the return value of `Cipher.doFinal` for the input `AKIAABCDEFGHIJKLMNOP`.
 
 However, we cannot find any calls to `Base64.encodeToString` or `Cipher.*` for the `preSharedKeys` values written by `putStringSet` (`MIIEvAIBADAN...` and `gJXS9EwpuzK8...`).
 
