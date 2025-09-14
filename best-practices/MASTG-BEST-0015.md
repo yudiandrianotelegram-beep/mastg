@@ -3,7 +3,7 @@ title: Use `setRecentsScreenshotEnabled` to Prevent Screenshots When Backgrounde
 alias: preventing-screenshots-when-backgrounded
 id: MASTG-BEST-0015
 parent: MASTG-BEST-0014
-knowledge: MASTG-KNOW-0053
+knowledge: [MASTG-KNOW-0053]
 platform: android
 component: android.app.Activity
 available_since: 33

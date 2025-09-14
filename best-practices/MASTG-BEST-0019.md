@@ -2,7 +2,7 @@
 title: Use Non-Caching Input Types for Sensitive Fields
 alias: use-non-caching-input-types
 id: MASTG-BEST-0019
-knowledge: MASTG-KNOW-0055
+knowledge: [MASTG-KNOW-0055]
 platform: android
 refs:
 - https://developer.android.com/reference/android/text/InputType

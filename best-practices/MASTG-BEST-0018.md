@@ -3,7 +3,7 @@ title: Use `SecureFlagPolicy.SecureOn` to Prevent Screenshots in Compose Compone
 alias: use-secureon-in-compose-components
 id: MASTG-BEST-0018
 parent: MASTG-BEST-0014
-knowledge: MASTG-KNOW-0053
+knowledge: [MASTG-KNOW-0053, MASTG-KNOW-0105, MASTG-KNOW-0106]
 platform: android
 component: androidx.compose.ui:ui
 available_since: 1.0.0

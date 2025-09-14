@@ -2,7 +2,6 @@
 title: Preventing Screenshots and Screen Recording
 alias: preventing-screenshots-and-screen-recording
 id: MASTG-BEST-0014
-knowledge: MASTG-KNOW-0053
 platform: android
 parent: None
 ---

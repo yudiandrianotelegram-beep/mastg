@@ -3,7 +3,7 @@ title: Use `SECURE_FLAG` to Prevent Screenshots and Screen Recording
 alias: use-secure-flag-to-prevent-screenshots-and-screen-recording
 id: MASTG-BEST-0016
 parent: MASTG-BEST-0014
-knowledge: MASTG-KNOW-0053
+knowledge: [MASTG-KNOW-0053, MASTG-KNOW-0105, MASTG-KNOW-0106]
 platform: android
 component: android.view.Window
 available_since: 1
