@@ -32,5 +32,5 @@ Recommendations:
 
 - For sensitive but non-password inputs (e.g., security answers), prefer password variations or at minimum disable suggestions (`TYPE_TEXT_FLAG_NO_SUGGESTIONS`, `autoCorrect = false`).
 
-- Overriding a non-caching type later in code with a generic class type (e.g., setting `TYPE_NUMBER_VARIATION_PASSWORD` and then setting `TYPE_CLASS_NUMBER`).
+- Avoid overriding a non-caching type later in code with a generic class type (e.g., setting `TYPE_NUMBER_VARIATION_PASSWORD` and then setting `TYPE_CLASS_NUMBER`).
 

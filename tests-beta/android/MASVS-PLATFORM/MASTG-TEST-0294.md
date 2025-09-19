@@ -11,7 +11,7 @@ threat: [app, root]
 
 ## Overview
 
-This test verifies whether an app references Android screen capture prevention APIs for components that don't support [`FLAG_SECURE`](https://developer.android.com/security/fraud-prevention/activities#flag_secure). 
+This test verifies whether an app references Android screen capture prevention APIs for components that don't support [`FLAG_SECURE`](https://developer.android.com/security/fraud-prevention/activities#flag_secure).
 
 When this protection is enabled, Android blocks screenshots, prevents content from appearing on non-secure displays (including remote screen sharing), and blocks capture through MediaProjection or virtual displays. Screenshots are blocked (resulting images are blank or obscured and the system may show a policy message), and the app's content is not shown in the Recents screen when backgrounded.
 

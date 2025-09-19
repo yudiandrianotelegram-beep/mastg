@@ -35,6 +35,7 @@ The flag is applied with [`addFlags()`](https://developer.android.com/reference/
 - Avoid clearing the flag during transitions (e.g., using [`clearFlags()`](https://developer.android.com/reference/android/view/Window#clearFlags(int)) or `setFlags()` without reapplying), as sensitive previews for the Recents screen can be captured before callbacks like `onPause()`.
 
 Note that you cannot set `FLAG_SECURE` directly on components that do not expose `getWindow()`, such as `android.widget.PopupWindow` or `android.widget.Toast`.
+
 - `android.view.View` and subclasses like `android.widget.TextView`, `android.widget.EditText`, `android.webkit.WebView`, `android.view.TextureView`, etc. don't support `FLAG_SECURE`. You must secure their containing Window instead. Alternatively, you can mask passwords and other sensitive by following the recommendations in @MASTG-BEST-0019.
 
 For more information, refer to the official documentation.
