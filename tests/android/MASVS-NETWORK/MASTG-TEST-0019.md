@@ -8,6 +8,7 @@ title: Testing Data Encryption on the Network
 masvs_v1_levels:
 - L1
 - L2
+profiles: [L1, L2]
 status: deprecated
 covered_by: [MASTG-TEST-0233, MASTG-TEST-0234, MASTG-TEST-0235, MASTG-TEST-0236, MASTG-TEST-0237, MASTG-TEST-0238, MASTG-TEST-0239]
 deprecation_note: New version available in MASTG V2
@@ -49,5 +50,5 @@ Intercept the tested app's incoming and outgoing network traffic and make sure t
 
 For more details refer to:
 
-- ["Intercepting Traffic on the Network Layer"](../../../Document/0x04f-Testing-Network-Communication.md#intercepting-traffic-on-the-network-layer) from chapter "Mobile App Network Communication"
+- ["Intercepting Network Traffic Through MITM"](../../../Document/0x04f-Testing-Network-Communication.md#intercepting-network-traffic-through-mitm)
 - @MASTG-TECH-0010

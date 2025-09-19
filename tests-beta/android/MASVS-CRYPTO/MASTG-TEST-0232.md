@@ -1,15 +1,16 @@
 ---
-title: Weak Symmetric Encryption Modes
+title: Broken Symmetric Encryption Modes
 platform: android
 id: MASTG-TEST-0232
 type: [static, dynamic]
 weakness: MASWE-0020
 best-practices: [MASTG-BEST-0005]
+profiles: [L1, L2]
 ---
 
 ## Overview
 
-To test for the [use of weak encryption modes](../../../Document/0x04g-Testing-Cryptography.md#weak-block-cipher-mode) in Android apps, we need to focus on methods from cryptographic frameworks and libraries that are used to configure and apply encryption modes.
+To test for the [use of broken encryption modes](../../../Document/0x04g-Testing-Cryptography.md#broken-block-cipher-modes) in Android apps, we need to focus on methods from cryptographic frameworks and libraries that are used to configure and apply encryption modes.
 
 In Android development, the `Cipher` class from the Java Cryptography Architecture (JCA) is the primary API that allows you to specify the encryption mode for cryptographic operations. [`Cipher.getInstance`](https://developer.android.com/reference/javax/crypto/Cipher#getInstance(java.lang.String)) defines the transformation string, which includes the encryption algorithm, mode of operation, and padding scheme. The general format is `"Algorithm/Mode/Padding"`. For example:
 
@@ -19,7 +20,7 @@ Cipher.getInstance("AES/ECB/PKCS5Padding")
 
 In this test we're going to focus on symmetric encryption modes such as [ECB (Electronic Codebook)](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Electronic_codebook_(ECB)).
 
-ECB (defined in [NIST SP 800-38A](https://csrc.nist.gov/pubs/sp/800/38/a/final))  is generally discouraged [see NIST announcement in 2023](https://csrc.nist.gov/news/2023/decision-to-revise-nist-sp-800-38a) due to its inherent security weaknesses. While not explicitly prohibited, its use is limited and advised against in most scenarios. ECB is a block cipher mode that operate deterministically, dividing plaintext into blocks and encrypting them separately, which reveals patterns in the ciphertext. This makes it vulnerable to attacks like [known-plaintext attacks](https://en.wikipedia.org/wiki/Known-plaintext_attack) and [chosen-plaintext attacks](https://en.wikipedia.org/wiki/Chosen-plaintext_attack).
+ECB (defined in [NIST SP 800-38A](https://csrc.nist.gov/pubs/sp/800/38/a/final)) is generally discouraged [see NIST announcement in 2023](https://csrc.nist.gov/news/2023/decision-to-revise-nist-sp-800-38a) due to its inherent security weaknesses. While not explicitly prohibited, its use is limited and advised against in most scenarios. ECB is a block cipher mode that operate deterministically, dividing plaintext into blocks and encrypting them separately, which reveals patterns in the ciphertext. This makes it vulnerable to attacks like [known-plaintext attacks](https://en.wikipedia.org/wiki/Known-plaintext_attack) and [chosen-plaintext attacks](https://en.wikipedia.org/wiki/Chosen-plaintext_attack).
 
 For example, the following transformations are all [considered vulnerable](https://support.google.com/faqs/answer/10046138?hl=en):
 
@@ -40,8 +41,8 @@ In the transformation strings like `"RSA/ECB/OAEPPadding"` or `"RSA/ECB/PKCS1Pad
 
 ## Observation
 
-The output should contain a list of locations where insecure or deprecated encryption modes are used in cryptographic operations.
+The output should contain a list of locations where broken encryption modes are used in cryptographic operations.
 
 ## Evaluation
 
-The test case fails if any insecure encryption modes are identified in the app.
+The test case fails if any broken modes are identified in the app.
