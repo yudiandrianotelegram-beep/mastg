@@ -16,19 +16,19 @@ Combine this practice with broader data leakage controls e.g., @MASTG-BEST-0014 
 Recommendations:
 
 - XML layouts (EditText)
-  - Passwords: `android:inputType="textPassword"`
-  - Numeric PINs: `android:inputType="numberPassword"`
-  - Avoid: `textVisiblePassword` and plain `text`/`number` without password variation.
+    - Passwords: `android:inputType="textPassword"`
+    - Numeric PINs: `android:inputType="numberPassword"`
+    - Avoid: `textVisiblePassword` and plain `text`/`number` without password variation.
 
 - Programmatic (View-based UI)
-  - Passwords: `setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)`
-  - Numeric PINs: `setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD)`
-  - Optionally disable suggestions for non-password sensitive fields: add `InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS`.
+    - Passwords: `setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)`
+    - Numeric PINs: `setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD)`
+    - Optionally disable suggestions for non-password sensitive fields: add `InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS`.
 
 - Jetpack Compose
-  - Passwords: `KeyboardOptions(keyboardType = KeyboardType.Password, autoCorrect = false)`
-  - Numeric PINs: `KeyboardOptions(keyboardType = KeyboardType.NumberPassword, autoCorrect = false)`
-  - Also set a visual transformation where appropriate (e.g., `PasswordVisualTransformation()`).
+    - Passwords: `KeyboardOptions(keyboardType = KeyboardType.Password, autoCorrect = false)`
+    - Numeric PINs: `KeyboardOptions(keyboardType = KeyboardType.NumberPassword, autoCorrect = false)`
+    - Also set a visual transformation where appropriate (e.g., `PasswordVisualTransformation()`).
 
 - For sensitive but non-password inputs (e.g., security answers), prefer password variations or at minimum disable suggestions (`TYPE_TEXT_FLAG_NO_SUGGESTIONS`, `autoCorrect = false`).
 
