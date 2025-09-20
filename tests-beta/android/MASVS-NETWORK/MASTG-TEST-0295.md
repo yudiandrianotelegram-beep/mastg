@@ -24,5 +24,3 @@ The output should list all locations where the Security Provider update is perfo
 ## Evaluation
 
 The test fails if the app does not update the provider, or it does not handle exceptions properly. Check that these calls occur before any network connections are made.
-
-The test passes if the app updates the Security Provider using the correct API and handles exceptions properly.
