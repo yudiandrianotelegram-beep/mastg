@@ -15,6 +15,7 @@ Example:
 MASTG-TEST-0204.md
 MASTG-TEST-0205.md
 ```
+Each test has two parts: the [Markdown metadata](#markdown-metadata) (YAML `front matter`) and the [Markdown body](#markdown-body).
 
 ### Markdown: Metadata
 
@@ -101,7 +102,7 @@ Notes:
 
 #### prerequisites
 
-List prerequisites needed to execute or evaluate the test. Existing files are in prerequisites/. Create new ones if needed.
+List prerequisites needed to execute or evaluate the test. Existing files are in `prerequisites/`. Create new ones if needed.
 
 - If there are no prerequisites, you can omit this field or use an empty list.
 
@@ -116,7 +117,10 @@ prerequisites:
 #### profiles
 
 Specify MASVS profiles where the test applies. Valid values: L1, L2, P, R.
+The profiles are described in [MAS Testing Profiles Guide]( https://docs.google.com/document/d/1paz7dxKXHzAC9MN7Mnln1JiZwBNyg7Gs364AJ6KudEs/edit?tab=t.0#heading=h.il6q80u4fm3n)
 
+- L1 denotes Essential Security.
+- L2 denotes Advanced Security.
 - P denotes Privacy.
 - R denotes Resilience.
 
