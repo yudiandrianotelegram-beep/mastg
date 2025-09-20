@@ -19,7 +19,7 @@ This test checks whether the Android app ensures the Security Provider (@MASTG-K
 
 ## Observation
 
-The output should list all locations where the Security Provider update is performed and how exceptions are handled.
+The output should list all locations where the Security Provider update is performed and how exceptions are handled (for `installIfNeeded`), or how the `ProviderInstallListener` handles errors (for `installIfNeededAsync`).
 
 ## Evaluation
 

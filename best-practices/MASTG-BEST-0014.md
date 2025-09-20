@@ -1,6 +1,6 @@
 ---
-title: Update the Security Provider
-alias: update-security-provider
+title: Update the GMS Security Provider
+alias: update-gms-security-provider
 id: MASTG-BEST-0014
 platform: android
 ---
