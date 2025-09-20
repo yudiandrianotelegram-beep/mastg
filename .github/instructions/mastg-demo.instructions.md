@@ -5,13 +5,16 @@ A collection of demos (demonstrative examples) of the test that include working 
 Demos live in `demos/android/` or `demos/ios/` under the corresponding MASVS category folder. Each demo has its own folder named using its ID and contains:
 
 * Markdown file: `MASTG-DEMO-xxx.md`
-* Code samples (e.g. .kt, .swift, .xml, .plist)
-* Testing code (e.g. sh, py)
-* Output files (e.g. txt, json, sarif)
+* Code samples (e.g. `*.kt`, `*.swift`, `*.xml`, `*.plist`)
+* Testing code (e.g. `*.sh`, `*.py`)
+* Output files (e.g. `*.txt`, `*.json`, `*.sarif`)
 
-**Language:** The samples are written in **Kotlin** or **Swift**, depending on the platform. In some cases, the samples will also include configuration files such as AndroidManifest.xml or Info.plist.
+**Language:** The samples are written in **Kotlin** or **Swift**, depending on the platform. In some cases, the samples will also include configuration files such as `AndroidManifest.xml` or `Info.plist`.
 
-**Decompiled Code:** If the sample can be decompiled, the decompiled code is also provided in the demo (e.g as a Java file on Android: `MastgTest_reversed.java`). This is useful for understanding the code in the context of the application.
+**Decompiled Code:** Decompiled code must be provided if the demo involves static analysis.
+
+- **Android:** Follow the instructions in ["MASTestApp for Android - Run the Extraction Script"](https://github.com/cpholguera/mas-app-android) to obtain the relevant files such as the reversed `AndroidManifest.xml` and the `MastgTest_reversed.java` which is the MASTestApp's main file. Including the full version of these files is also useful for understanding the code in the context of the application, regardless of whether the demo focuses on a specific snippet.
+- **iOS:** Follow the instructions in ["MASTestApp for iOS - Reverse Engineering"](https://github.com/cpholguera/MASTestApp-iOS) to obtain the relevant files such as the the IPA file and the reversed `Info.plist` already converted to XML format. Currently you need to manually extract the main binary, MASTestApp, and include it in the demo folder (we allow this for now since the files are sufficiently small). The demos will typically use reverse engineering tools like `r2` on this binary.
 
 The **demos MUST WORK**. See [Code Samples](#code-samples).
 
@@ -21,7 +24,7 @@ Demos are required to be **fully self-contained** and should **not rely on exter
 
 Please specify the mobile platform version, IDE and version, device.
 
-Example:
+Android Example:
 
 ```sh
 % ls -1 -F demos/android/MASVS-CRYPTO/MASTG-DEMO-0007
@@ -29,6 +32,18 @@ Example:
 MASTG-DEMO-0007.md
 MastgTest.kt
 MastgTest_reversed.java
+output.txt
+run.sh*
+```
+
+iOS Example:
+
+```sh
+% ls -1 -F ./demos/ios/MASVS-CRYPTO/MASTG-DEMO-0016/
+MASTG-DEMO-0016.md
+MASTestApp*
+MastgTest.swift
+cryptokit_hash.r2
 output.txt
 run.sh*
 ```
