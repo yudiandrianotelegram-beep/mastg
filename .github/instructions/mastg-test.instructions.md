@@ -1,20 +1,29 @@
 ## Tests
 
-Tests are platform-specific and must be located under tests-beta/android/ or tests-beta/ios/, within the corresponding MASVS category. Their file names are the test IDs.
+A MASWE weakness can have one or more platform-specific tests associated with it.
 
-Notes:
+Tests have an [overview](#overview) and contain [Steps](#steps) which produce outputs called [observations](#observation) which must be [evaluated](#evaluation).
 
-- Tests with `platform: network` are still organized under the OS folder that the MASVS category belongs to (for example, Android network tests live under `tests-beta/android/MASVS-NETWORK/`).
+Tests must be located under `tests-beta/android/` or `tests-beta/ios/`, within the corresponding MASVS category. Their file names are the test IDs.
 
-Tests have an overview and contain Steps which produce outputs called observations. After following the Steps you come up with an [Observation](https://docs.google.com/document/d/1EMsVdfrDBAu0gmjWAUEs60q-fWaOmDB5oecY9d9pOlg/edit?pli=1#heading=h.h9gqgz4hdubj) which you will [Evaluate](https://docs.google.com/document/d/1EMsVdfrDBAu0gmjWAUEs60q-fWaOmDB5oecY9d9pOlg/edit?pli=1#heading=h.lare0v58fwbf).
-
-Example:
+Example structure:
 
 ```sh
 % ls -1 -F tests-beta/android/MASVS-CRYPTO/
 MASTG-TEST-0204.md
 MASTG-TEST-0205.md
 ```
+
+Example tests for reference:
+
+- [MASTG-TEST-0207](https://mas.owasp.org/MASTG/tests-beta/android/MASVS-STORAGE/MASTG-TEST-0207/)
+- [MASTG-TEST-0216](https://mas.owasp.org/MASTG/tests-beta/android/MASVS-STORAGE/MASTG-TEST-0216/)
+- [MASTG-TEST-0263](https://mas.owasp.org/MASTG/tests-beta/android/MASVS-STORAGE/MASTG-TEST-0263/)
+
+Notes:
+
+- Tests with `platform: network` are still organized under the OS folder that the MASVS category belongs to (for example, Android network tests live under `tests-beta/android/MASVS-NETWORK/`).
+
 Each test has two parts: the [Markdown metadata](#markdown-metadata) (YAML `front matter`) and the [Markdown body](#markdown-body).
 
 ### Markdown: Metadata
@@ -36,12 +45,6 @@ Follow a consistent style across all test titles.
 
 Exceptions may apply where "Runtime ..." feels forced, for example tests using adb, local backups, or filesystem snapshots.
 
-Examples:
-
-- [MASTG-TEST-0207](https://mas.owasp.org/MASTG/tests-beta/android/MASVS-STORAGE/MASTG-TEST-0207/)
-- [MASTG-TEST-0216](https://mas.owasp.org/MASTG/tests-beta/android/MASVS-STORAGE/MASTG-TEST-0216/)
-- [MASTG-TEST-0263](https://mas.owasp.org/MASTG/tests-beta/android/MASVS-STORAGE/MASTG-TEST-0263/)
-
 #### platform
 
 The mobile platform. One of: ios, android, network.
@@ -62,9 +65,14 @@ The MASWE weakness ID the test references.
 
 One or more test types.
 
-Supported: static, dynamic, network, manual, filesystem, developer.
+Supported:
 
-- developer: tests that work on developer artifacts or supply-chain outputs (for example SBOM, dependency manager lockfiles, scanner reports) rather than the built app.
+- `static`: analysis of the app binary, reverse-engineered source code, or developer artifacts that are available in the APK/IPA app package (e.g., Android manifest, Info.plist, entitlements, etc.). No execution of the app is required.
+- `dynamic`: analysis of the app while it is running and involves runtime analysis such as hooking or method tracing.
+- `manual`: manual steps that require human judgment, such as inspecting app behavior, UI, or configuration. This may include reverse engineering or runtime analysis that cannot be fully automated.
+- `network`: analysis of network traffic, while the app is running. Done externally, for example using a proxy or network capture tool.
+- `filesystem`: analysis of the app's file system, including local storage or backups, which doesn't involve runtime analysis such as hooking or method tracing.
+- `developer`: tests only the developer can perform because they require access to the source code, build process, or other internal resources.
 
 Example:
 
@@ -76,10 +84,6 @@ Examples with multiple types:
 
 ```md
 type: [dynamic, manual]
-```
-
-```md
-type: [network]
 ```
 
 #### best-practices
@@ -138,6 +142,7 @@ Include these if relevant:
 - `note:` short free-form note
 - `available_since:` minimum platform/API level
 - `deprecated_since:` last applicable platform/API level
+- `apis:` list of relevant APIs
 
 Notes:
 
