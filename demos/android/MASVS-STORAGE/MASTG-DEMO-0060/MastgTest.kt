@@ -6,11 +6,11 @@ import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 
 class MastgTest(private val context: Context) {
-    private val awsKey = "AKIAIOSFODNN7EXAMPLE"
-    private val githubToken = "ghp_1234567890abcdefghijklmnOPQRSTUV"
-    private val preSharedKeys = setOf(
-        "MIIEvAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJeAgEAAoGBALfX7kbfFv3pc3JjOHQ=",
-        "gJXS9EwpuzK8U1TOgfplwfKEVngCE2D5FNBQWvNmuHHbigmTCabsA="
+    private val awsKey = "AKIAABCDEFGHIJKLMNOP"
+    private val githubToken = "ghp_1234567890abcdefghijklmnopqrstuvABCD"
+    private val preSharedKeys = hashSetOf(
+        "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJeAgEAAoGBALfX7kbfFv3pc3JjOHQ=\n-----END PRIVATE KEY-----",
+        "-----BEGIN PRIVATE KEY-----\ngJXS9EwpuzK8U1TOgfplwfKEVngCE2D5FNBQWvNmuHHbigmTCabsA=\n-----END PRIVATE KEY-----"
     )
     private val sharedPrefsName = "MasSharedPref_Sensitive_Data"
 
