@@ -174,7 +174,6 @@ jobs:
             && echo "Copied data_extraction_rules.xml for $demo" \
             || echo "No data_extraction_rules.xml found for $demo"
 
-          // If $demo/buld.gradle.kts.libs exists, read its content and replace "// ADD_LIBS_HERE" in MASTestApp-Android/app/build.gradle.kts with that content
           if [ -f "$demo/build.gradle.kts.libs" ]; then
             libs_content=$(cat "$demo/build.gradle.kts.libs")
             sed -i "s|// ADD_LIBS_HERE|$libs_content|g" MASTestApp-Android/app/build.gradle.kts
