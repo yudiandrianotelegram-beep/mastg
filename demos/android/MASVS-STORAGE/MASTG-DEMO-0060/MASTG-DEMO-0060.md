@@ -5,12 +5,15 @@ id: MASTG-DEMO-0060
 code: [kotlin]
 test: MASTG-TEST-0287
 kind: pass
-note: This demo shows how to store sensitive data securely in the app sandbox using the EncryptedSharedPreferences class.
 ---
 
 ### Sample
 
-The following Kotlin code demonstrates how to securely store sensitive data (such as a password and API key) in the app sandbox using `EncryptedSharedPreferences`:
+The code snippet below shows sample code which **securely** stores sensitive data using `EncryptedSharedPreferences`. It stores sensitive data using `String` and `StringSet`.
+
+!!! Warning
+
+    The **Jetpack security crypto library**, including the `EncryptedFile` and  `EncryptedSharedPreferences` classes, has been [deprecated](https://developer.android.com/privacy-and-security/cryptography#jetpack_security_crypto_library). However, since an official replacement has not yet been released, we recommend using these classes until one is available.
 
 {{ MastgTest.kt }}
 
