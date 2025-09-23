@@ -10,12 +10,12 @@ Objection offers several features specific to Android. You can find the [full li
 - Disable SSL pinning for popular methods
 - Access application storage to download or upload files
 - Execute custom Frida scripts
-- List the Activities, Services and Broadcast receivers
+- List the Activities, Services, and Broadcast receivers
 - Start Activities
 
-If you have a rooted device with frida-server installed, Objection can connect directly to the running Frida server to provide all its functionality without needing to repackage the application. However, it is not always possible to root an Android device or the app may contain advanced RASP controls for root detection, so injecting a frida-gadget may be the easiest way to bypass those controls.
+If you have a rooted device with frida-server installed, Objection can connect directly to the running Frida server to provide all its functionality without needing to repackage the application. However, it is not always possible to root an Android device, or the app may contain advanced RASP controls for root detection, so injecting a frida-gadget may be the easiest way to bypass those controls.
 
-The ability to **perform advanced dynamic analysis on non-rooted devices** is one of the features that makes Objection incredibly useful. After following the repackaging process (@MASTG-TECH-0039) you will be able to run all the aforementioned commands which make it very easy to quickly analyze an application, or bypass basic security controls.
+The ability to **perform advanced dynamic analysis on non-rooted devices** is one of the features that makes Objection incredibly useful. After following the repackaging process (@MASTG-TECH-0039), you will be able to run all the aforementioned commands, which make it very easy to quickly analyze an application or bypass basic security controls.
 
 ## Using Objection on Android
 
@@ -39,7 +39,7 @@ Once you are in the Objection REPL, you can execute any of the available command
 # Show the different storage locations belonging to the app
 $ env
 
-# Disable popular ssl pinning methods
+# Disable popular SSL pinning methods
 $ android sslpinning disable
 
 # List items in the keystore
