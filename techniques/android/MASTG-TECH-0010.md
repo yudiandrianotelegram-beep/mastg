@@ -78,7 +78,7 @@ You can display the captured traffic in a human-readable format with Wireshark. 
 
 <img src="Images/Chapters/0x05b/tcpdump_and_wireshard_on_android.png" width="400px" />
 
-This neat little trick allows you now to identify what kind of protocols are used and to which endpoints the app is talking to. The questions is now, how can I test the endpoints if Burp is not capable of showing the traffic? There is no easy answer for this, but a few Burp plugins that can get you started.
+This neat little trick allows you to identify what kind of protocols are used and to which endpoints the app is talking. The question is now, how can I test the endpoints if Burp is not capable of showing the traffic? There is no easy answer for this, but a few Burp plugins can get you started.
 
 ## Firebase/Google Cloud Messaging (FCM/GCM)
 
