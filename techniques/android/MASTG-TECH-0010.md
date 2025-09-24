@@ -58,7 +58,7 @@ The tcpdump command above involves
 
 By using the pipe (`|`), we sent all output from tcpdump to netcat, which opens a listener on port 11111. You'll usually want to monitor the wlan0 interface. If you need another interface, list the available options with the command `$ ip addr`.
 
-To access port 11111, you need to forward the port to your host computer via adb.
+To access port 11111, you need to forward the port to your host computer via @MASTG-TOOL-0004.
 
 ```bash
 adb forward tcp:11111 tcp:11111

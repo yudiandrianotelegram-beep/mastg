@@ -11,6 +11,6 @@ Use a computer to perform all the steps indicated in the article ["Patching Andr
 objection patchapk --source app-release.apk
 ```
 
-The patched application then needs to be installed using adb.
+The patched application then needs to be installed using @MASTG-TOOL-0004.
 
 > This repackaging method is enough for most use cases. For more advanced repackaging, refer to @MASTG-TECH-0039.
