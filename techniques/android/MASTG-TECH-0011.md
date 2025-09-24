@@ -216,7 +216,7 @@ Once you have setup an interception proxy and have a MITM position you might sti
 
 What to do if the Wi-Fi we need for testing has client isolation?
 
-You can configure the proxy on your Android device to point to 127.0.0.1:8080, connect your phone via USB to your host computer and use adb to make a reverse port forwarding:
+You can configure the proxy on your Android device to point to 127.0.0.1:8080, connect your phone via USB to your host computer and use @MASTG-TOOL-0004 to make a reverse port forwarding:
 
 ```bash
 adb reverse tcp:8080 tcp:8080

@@ -9,7 +9,7 @@ On Android you can easily inspect the log of system messages by using [`Logcat`]
 
 <img src="Images/Chapters/0x05b/log_output_Android_Studio.png" width="100%" />
 
-- You can execute Logcat with adb to store the log output permanently:
+- You can execute Logcat with @MASTG-TOOL-0004 to store the log output permanently:
 
 ```bash
 adb logcat > logcat.log

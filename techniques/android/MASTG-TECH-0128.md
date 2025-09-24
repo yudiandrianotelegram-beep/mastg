@@ -3,7 +3,7 @@ title: Performing a Backup and Restore of App Data
 platform: android 
 ---
 
-## Using the Backup Manager (via ADB shell)
+## Using the Backup Manager (via @MASTG-TOOL-0004 shell)
 
 Run [Backup Manager (`adb shell bmgr`)](https://developer.android.com/identity/data/testingbackup#TestingBackup)
 
@@ -19,7 +19,7 @@ tar xvf org.owasp.mastestapp.ab
 
 The extracted backup directory (`apps/`) is stored in the current working directory. For instructions on how to inspect it, see @MASTG-TECH-0127.
 
-## Using ADB Backup
+## Using @MASTG-TOOL-0004 Backup
 
 !!! warning
     `adb backup` is [restricted since Android 12](https://developer.android.com/about/versions/12/behavior-changes-12#adb-backup-restrictions) and requires `android:debuggable=true` in the AndroidManifest.xml.
