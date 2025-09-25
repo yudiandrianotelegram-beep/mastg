@@ -127,7 +127,7 @@ Note that these measures cannot assure a 100% effectiveness, as the reverse engi
   </tr>
 </table>
 
-<img src="Images/Chapters/0x03/example_apps_profiles.png" width="550px" />
+<img src="Images/Chapters/0x03/example_apps_profiles.png" style="width: 40%; border-radius: 5px"/>
 
 **Disclaimer:** The examples highlight the most representative profile for the apps and are provided for illustrative purposes only and aim to represent the different MAS profiles and suggested profile combinations. They serve to highlight the high-level differences between each profile.
 
