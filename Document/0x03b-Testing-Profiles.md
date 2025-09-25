@@ -9,7 +9,7 @@ The MAS Testing Profiles can be utilized in various ways:
 - **App Security Assessment**: Security professionals can leverage the appropriate MAS Testing Profiles based on the app's characteristics, to conduct comprehensive assessments to identify vulnerabilities, gaps in security controls, and areas for improvement (e.g. cryptography or secure communication best practices).
 - **Secure-by-Design Approach**: Developers can utilize MAS Testing Profiles as a guideline during the app development lifecycle. By incorporating security controls from the chosen profiles into the design and implementation stages, developers can proactively address security requirements and mitigate potential risks from the early stages of app development.
 - **Compliance and Risk Management**: Organizations can rely on the MAS Testing Profiles to align with regulatory and compliance standards specific to the mobile app domain. By mapping the applicable security controls and tests to relevant regulations and industry best practices, organizations can ensure adherence to security requirements and demonstrate their commitment to data protection and privacy.
-- **App Vetting Process:** Organizations can use the MAS Testing Profiles as the foundation for app vetting processes before deployment on the organization’s devices. The profiles would be carefully tailored and potentially extended with organization-specific security requirements in order to meet their individual security needs and risk tolerance. See ["NIST.SP.800-163r1 \- Vetting the Security of Mobile Applications"](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-163r1.pdf) for more information.
+- **App Vetting Process:** Organizations can use the MAS Testing Profiles as the foundation for app vetting processes before deployment on the organization's devices. The profiles would be carefully tailored and potentially extended with organization-specific security requirements in order to meet their individual security needs and risk tolerance. See ["NIST.SP.800-163r1 \- Vetting the Security of Mobile Applications"](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-163r1.pdf) for more information.
 
 ## The MAS Testing Profiles
 
@@ -71,8 +71,6 @@ MAS-R is recommended for
 Note that the absence of any MAS-R measures does not inherently introduce vulnerabilities. Rather, these measures offer additional, threat-specific protection to applications. However, this is provided that these apps also meet the rest of the OWASP MASVS security controls appropriate to their specific threat models. Crucially, **MAS-R is meant to augment and not replace MAS-L1 and MAS-L2.** It should not be used standalone but as an extra layer of defense, supplementing the base security controls in a defense-in-depth strategy.
 
 Note that these measures cannot assure a 100% effectiveness, as the reverse engineer will always have full access to the device and will therefore end up succeeding given enough time and resources.
-
-###
 
 ### Examples
 
