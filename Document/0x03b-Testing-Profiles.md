@@ -96,7 +96,7 @@ Note that these measures cannot assure a 100% effectiveness, as the reverse engi
         <li>No sensitive functionality</li>
       </ul>
       <p><strong>Example business assets:</strong> IP, ad revenue</p>
-      <p><strong>Example apps:</strong> Ad-supported Weather app (Weather & Radar - Storm radar)</p>
+      <p><strong>Example apps:</strong> Ad-supported Weather app</p>
     </td>
   </tr>
   <tr>
@@ -112,7 +112,7 @@ Note that these measures cannot assure a 100% effectiveness, as the reverse engi
       </ul>
       <p><strong>Example sensitive data:</strong> location, payment, health, access tokens, API keys, crypto key encrypting user data</p>
       <p><strong>Example sensitive functionality:</strong> medical record upload, in-app purchases</p>
-      <p><strong>Example apps:</strong> Messenger (WhatsApp), Health (MyDoctor), Sport (FitBit)</p>
+      <p><strong>Example apps:</strong> Messenger, Health, Sport</p>
     </td>
     <td>
       <ul>
@@ -122,7 +122,7 @@ Note that these measures cannot assure a 100% effectiveness, as the reverse engi
       </ul>
       <p><strong>Example business assets:</strong> IP</p>
       <p><strong>Example sensitive functionality:</strong> money transfers, in-app purchases</p>
-      <p><strong>Example apps:</strong> Banking (ING Banking to go), Insurance (Allstate), Game (Pokémon Go), Entertainment (Netflix)</p>
+      <p><strong>Example apps:</strong> Banking, Insurance, Game, Entertainment</p>
     </td>
   </tr>
 </table>
