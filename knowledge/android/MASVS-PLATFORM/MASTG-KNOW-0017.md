@@ -146,7 +146,6 @@ Independently from the assigned Protection Level, it is important to consider th
 | **NONE**         | `android.permission.WRITE_MEDIA_STORAGE`                             | signature         |
 | **NONE**         | `android.permission.MODIFY_AUDIO_SETTINGS`                           | normal            |
 
-
 Note that this categorization can change over time. The paper gives us an example of that:
 
 > Prior to Android 10, the `READ_PHONE_STATE` permission would be classified as HIGH, due to the permanent device identifiers (e.g. (IMEI/MEID, IMSI, SIM, and build serial) that it guards. However, starting from Android 10, a bulk of the sensitive information that can be used for tracking has been moved, refactored or rescoped into a new permission called `READ_PRIVILEGED_PHONE_STATE`, putting the new permission in the HIGH category, but resulting in the `READ_PHONE_STATE` permission moving to LOW.
