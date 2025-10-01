@@ -82,7 +82,6 @@ Independently from the assigned Protection Level, it is important to consider th
 | **HIGH**         | `android.permission.WRITE_SYSTEM_PREFERENCES`                        | signature         |
 | **HIGH**         | `android.permission.LISTEN_FOR_KEY_ACTIVITY`                         | signature         |
 | **HIGH**         | `android.permission.RESOLVE_COMPONENT_FOR_UID`                       | signature         |
-| **HIGH**         | `android.permission.THREAD_NETWORK_TESTING`                          | signature         |
 | **MEDIUM**       | `android.permission.ACCESS_COARSE_LOCATION`                          | dangerous         |
 | **MEDIUM**       | `android.permission.CHANGE_COMPONENT_ENABLED_STATE`                  | signature         |
 | **MEDIUM**       | `android.permission.READ_CONTACTS`                                   | dangerous         |
@@ -138,6 +137,7 @@ Independently from the assigned Protection Level, it is important to consider th
 | **LOW**          | `android.permission.READ_SUBSCRIPTION_PLANS`                         | signature         |
 | **LOW**          | `android.permission.READ_UPDATE_ENGINE_LOGS`                         | signature         |
 | **LOW**          | `android.permission.MANAGE_DEVICE_POLICY_APP_FUNCTIONS`              | internal          |
+| **LOW**          | `android.permission.THREAD_NETWORK_TESTING`                          | signature         |
 | **NONE**         | `android.permission.ACCESS_NETWORK_STATE`                            | normal            |
 | **NONE**         | `android.permission.RECEIVE_BOOT_COMPLETED`                          | normal            |
 | **NONE**         | `android.permission.WAKE_LOCK`                                       | normal            |
