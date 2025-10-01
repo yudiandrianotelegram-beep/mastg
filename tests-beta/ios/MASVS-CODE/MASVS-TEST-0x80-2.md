@@ -1,7 +1,6 @@
 ---
 Title: Testing Enforced Updating
 ID: MASTG-TEST-0x80
-Link: https://mas.owasp.org/MASTG/tests/android/MASVS-CODE/MASTG-TEST-0080/
 Platform: ios
 MASVS v1: ['MSTG-ARCH-9']
 MASVS v2: ['MASVS-CODE-2']
@@ -10,7 +9,7 @@ type: [dynamic]
 
 ## Overview
 
-When a vulnerability is found in the app, it should be possible to force the user to update the application to continue using it.
+This test verifies whether an app can force the user to update their app version when direct to by a the backend. This can be done by submitting the current version to the backend and blocking the user from using the application in case the backend deteremins that the user should update.
 
 ## Steps
 
