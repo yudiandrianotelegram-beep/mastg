@@ -12,7 +12,7 @@ Locations and taxonomy:
 
 File naming and IDs:
 
-- The knowledge ID is defined by the filename: `MASTG-KNOW-\d{4}.md`.
+- The filename defines the knowledge ID: `MASTG-KNOW-\d{4}.md`.
 - Do not add an `id:` field to the YAML front matter.
 - Place the file in the platform (`android` or `ios`) and MASVS category folder that best matches the subject.
 
@@ -48,13 +48,13 @@ available_since: 18
 
 ### Markdown: Body
 
-Keep content authoritative, concise, and platform-focused. Avoid duplicating OS documentation; cite it and summarize what the feature is and how it works.
+Keep content authoritative, concise, and platform-focused. Avoid duplicating OS documentation. Instead, cite it and summarize the feature, including its purpose and functionality.
 
 Considerations for writing the content:
 
 - Define the concept and its scope. Relate to OS components, APIs, or security model elements.
 - Explain typical security-relevant behaviors or implications of the feature without necessarily recommending mitigations (that's for "best practices").
-- Include specific API names, version nuances, storage locations, configuration knobs. Try to avoid code samples; instead try to refer to existing MASTG-DEMO code files. If you include them keep them short and explanatory.
+- Include specific API names, version nuances, storage locations, and configuration knobs. Try to avoid code samples. Instead, refer to the existing MASTG-DEMO code files. If you include them, keep them short and explanatory.
 - Use references from official docs and standards. Avoid non-authoritative sources.
 - In body text, reference internal MAS identifiers with a leading `@` (for example, @MASTG-KNOW-0001, @MASTG-TEST-0204, @MASTG-TECH-0014, @MASTG-TOOL-0031, MASWE-0089).
 
@@ -70,11 +70,11 @@ Considerations for writing the content:
 - Cross-category content: If a topic spans two MASVS categories, choose the best fit and reference the other in the body; avoid duplicate pages.
 - Generic vs platform: Concepts that are identical across platforms should be split into platform folders if platform detail matters; otherwise, place details where they differ and keep overviews succinct.
 - Where to place recommendations: Keep all prescriptive advice (do/don't, secure configuration values, mitigations) in Best Practices pages under `best-practices/`, and link them from the "Related" section.
-- When writing tests, techniques, tools always try to link to a knowledge article or create one if it's missing.
+- When writing tests, techniques, or tools, always try to link to a knowledge article or create one if it's missing.
 
 ## Deprecation
 
-If the original source is gone, not relevant anymore, or too old, set the following in the YAML front matter:
+If the source is gone, not relevant anymore, or too old, set the following in the YAML front matter:
 
 - `status:` Must be set to `deprecated`
 - `deprecation_note:` Short clarifying note for deprecation. Keep phrasing concise and imperative

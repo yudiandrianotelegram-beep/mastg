@@ -20,7 +20,7 @@ This guide defines how to write and use mitmproxy scripts in MASTG demos. Script
 - Keep `run.sh` responsible for:
   - Starting/stopping mitmdump (foreground or background as appropriate to the demo flow).
   - Managing output files produced by the script (for example, `sensitive_data.log`).
-  - Ensuring the device/emulator routes traffic through the proxy (defer details to Tools page).
+  - Ensuring the device/emulator routes traffic through the proxy (defer details to the Tools page).
 
 ### Coding conventions
 
@@ -84,7 +84,7 @@ def response(flow: http.HTTPFlow):
 ### Logging and outputs
 
 - Default to writing a deterministic, append-only file (for example, `sensitive_data.log`) in the demo folder. Reference it in the Observation and Evaluation sections.
-- Keep the format simple and consistent—avoid timestamps unless needed for the demo, to keep diffs small.
+- Keep the format consistent and straightforward. Avoid timestamps unless needed for the demo to keep diffs small.
 - If multiple outputs are produced, document them in the demo’s Steps.
 
 ### Alignment with Tools

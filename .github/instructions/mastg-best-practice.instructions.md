@@ -49,7 +49,7 @@ Best Practices should contain:
 
 - what's the recommendation
 - why is that good
-- any caveats or considerations (for example, "it's good to have it but remember it can be bypassed this way")
+- any caveats or considerations (for example, "it's good to have it, but remember it can be bypassed this way")
 - official references
 
 ### Recommended Structure
@@ -73,7 +73,7 @@ Example References section:
 
 ### Cross-linking
 
-- From tests: use `best-practices: [MASTG-BEST-0001, MASTG-BEST-0011]` in the test’s YAML front matter. The site generator will create Mitigations links automatically.
+- From tests: use `best-practices: [MASTG-BEST-0001, MASTG-BEST-0011]` in the test’s YAML front matter. The site generator will automatically create Mitigations links.
 - In body text: reference tests, tools, or techniques with @ (for example, @MASTG-TEST-0252, @MASTG-TOOL-0031).
 
 ### Style

@@ -1,6 +1,6 @@
 ## r2 scripts (radare2)
 
-This guide defines how to write and use radare2 scripts in MASTG demos. Scripts live with the demo and are executed by `run.sh` to produce Observation output.
+This guide defines how to write and use radare2 scripts in MASTG demos. Scripts are included with the demo and executed by `run.sh` to produce the Observation output.
 
 ### Scope and terminology
 

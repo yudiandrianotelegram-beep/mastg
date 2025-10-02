@@ -68,13 +68,13 @@ Keep pages practical, scannable, and focused on security testing use.
 ### Cross-linking
 
 - Do not cross-link here to tests, demos, and techniques, etc.
-- Those components will cross-link to tools, typically techniques and demos
-- To do that they must add @MASTG-TOOL-0031 in their markdown body or as `tools: [MASTG-TOOL-0031]` in their YAML front matter
+- Those components will cross-link to tools, typically techniques, and demos
+- To do that, they must add @MASTG-TOOL-0031 in their markdown body or as `tools: [MASTG-TOOL-0031]` in their YAML front matter
 
 ## Conventions and quality
 
 - Prefer official sources for installation steps. Avoid advertising or endorsing third-party distributions
-- Favor commands that work across supported hosts when possible. Otherwise clearly label host-specific commands
+- Favor commands that work across supported hosts when possible. Otherwise, clearly label host-specific commands
 - For images, use HTML `<img>` tags per the markdown instructions (store assets in an appropriate images folder if needed)
 - Keep examples minimal and verifiable. Longer walkthroughs belong in demos with runnable scripts
 

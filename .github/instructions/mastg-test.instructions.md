@@ -32,7 +32,7 @@ Each test has two parts: the [Markdown metadata](#markdown-metadata) (YAML `fron
 
 Test titles should be concise and clearly state the purpose of the test.
 
-In some cases, the test name and the weakness may have the same title, but typically tests cover different aspects of a weakness. Titles should reflect that.
+In some cases, the test name and the weakness may have the same title, but typically, tests cover different aspects of a weakness. Titles should reflect that.
 
 Avoid including Android or iOS unless necessary, as in "Insecure use of the Android Protected Confirmation API".
 
@@ -43,11 +43,11 @@ Follow a consistent style across all test titles.
 - Static: “References to…” (semgrep/r2)
 - Dynamic: “Runtime Use …” (frida)
 
-Exceptions may apply where "Runtime ..." feels forced, for example tests using adb, local backups, or filesystem snapshots.
+Exceptions may apply where "Runtime ..." feels forced, for example, tests using adb, local backups, or filesystem snapshots.
 
 #### platform
 
-The mobile platform. One of: ios, android, network.
+The mobile platform. One of the following: iOS, Android, or network.
 
 - Use network for platform-agnostic traffic analysis tests where the checks are performed purely on captured/observed traffic (often paired with type: [network]).
 
@@ -57,7 +57,7 @@ The test ID.
 
 #### weakness
 
-The MASWE weakness ID the test references.
+The MASWE weakness ID that the test references.
 
 - In YAML front matter, specify the bare identifier (for example, `weakness: MASWE-0069`). In body text, include the leading `@` (for example, @MASWE-0069).
 
@@ -70,7 +70,7 @@ Supported:
 - `static`: analysis of the app binary, reverse-engineered source code, or developer artifacts that are available in the APK/IPA app package (e.g., Android manifest, Info.plist, entitlements, etc.). No execution of the app is required.
 - `dynamic`: analysis of the app while it is running and involves runtime analysis such as hooking or method tracing.
 - `manual`: manual steps that require human judgment, such as inspecting app behavior, UI, or configuration. This may include reverse engineering or runtime analysis that cannot be fully automated.
-- `network`: analysis of network traffic, while the app is running. Done externally, for example using a proxy or network capture tool.
+- `network`: analysis of network traffic, while the app is running. Done externally, for example, using a proxy or network capture tool.
 - `filesystem`: analysis of the app's file system, including local storage or backups, which doesn't involve runtime analysis such as hooking or method tracing.
 - `developer`: tests only the developer can perform because they require access to the source code, build process, or other internal resources.
 
@@ -106,7 +106,7 @@ Notes:
 
 #### prerequisites
 
-List prerequisites needed to execute or evaluate the test. Existing files are in `prerequisites/`. Create new ones if needed.
+List the prerequisites needed to execute or evaluate the test. Existing files are in `prerequisites/`. Create new ones if required.
 
 - If there are no prerequisites, you can omit this field or use an empty list.
 
@@ -120,7 +120,7 @@ prerequisites:
 
 #### profiles
 
-Specify MASVS profiles where the test applies. Valid values: L1, L2, P, R.
+Specify the MASVS profiles to which the test applies. Valid values: L1, L2, P, R.
 The profiles are described in [MAS Testing Profiles Guide]( https://docs.google.com/document/d/1paz7dxKXHzAC9MN7Mnln1JiZwBNyg7Gs364AJ6KudEs/edit?tab=t.0#heading=h.il6q80u4fm3n)
 
 - L1 denotes Essential Security.
@@ -164,7 +164,7 @@ Android apps sometimes use insecure pseudorandom number generators (PRNGs) such 
 
 #### Steps
 
-A test must include one or more steps. Steps can be static, dynamic, manual, or mixed.
+A test must include at least one step. Steps can be static, dynamic, manual, or a combination of these.
 
 Example, to check app notifications:
 
@@ -185,7 +185,7 @@ Example:
 Notes:
 
 - Always link to existing MASTG-TECH by ID (for example, @MASTG-TECH-0014)
-- Don't reference MASTG tools directly (this may still be happening in some tests and we must fix it.)
+- Don't reference MASTG tools directly (this may still be happening in some tests, and we must fix it.)
 - Be consistent by reusing the steps from existing tests. Do not create new phrasing or wording when it's not necessary.
 
 #### Observation

@@ -13,16 +13,16 @@ Demos live in `demos/android/` or `demos/ios/` under the corresponding MASVS cat
 
 **Decompiled Code:** Decompiled code must be provided if the demo involves static analysis.
 
-- **Android:** Follow the instructions in ["MASTestApp for Android - Run the Extraction Script"](https://github.com/cpholguera/mas-app-android) to obtain the relevant files such as the reversed `AndroidManifest.xml` and the `MastgTest_reversed.java` which is the MASTestApp's main file. Including the full version of these files is also useful for understanding the code in the context of the application, regardless of whether the demo focuses on a specific snippet.
-- **iOS:** Follow the instructions in ["MASTestApp for iOS - Reverse Engineering"](https://github.com/cpholguera/MASTestApp-iOS) to obtain the relevant files such as the the IPA file and the reversed `Info.plist` already converted to XML format. Currently you need to manually extract the main binary, MASTestApp, and include it in the demo folder (we allow this for now since the files are sufficiently small). The demos will typically use reverse engineering tools like `r2` on this binary.
+- **Android:** Follow the instructions in ["MASTestApp for Android - Run the Extraction Script"](https://github.com/cpholguera/mas-app-android) to obtain the relevant files, such as the reversed `AndroidManifest.xml` and the `MastgTest_reversed.java`, which is the MASTestApp's main file. Including the full version of these files is also useful for understanding the code in the context of the application, regardless of whether the demo focuses on a specific snippet.
+- **iOS:** Follow the instructions in ["MASTestApp for iOS - Reverse Engineering"](https://github.com/cpholguera/MASTestApp-iOS) to obtain the relevant files, such as the IPA file and the reversed `Info.plist` already converted to XML format. Currently, you need to extract the main binary, MASTestApp, manually, and include it in the demo folder (we allow this for now since the files are sufficiently small). The demos will typically use reverse engineering tools, such as `r2`, on this binary.
 
 The **demos MUST WORK**. See [Code Samples](#code-samples).
 
 Demos are required to be **fully self-contained** and should **not rely on external resources or dependencies**. This ensures that the demos can be run independently and that the results are reproducible. They must be proven to work on the provided sample applications and must be tested thoroughly before being included in the MASTG.
 
-**Don't create demos for outdated OS versions** that aren't supported by the MASTG. The MASTestApp is meant to always be up to date and aligned with the versions supported by the MASTG, so as to avoid additional maintenance of the MASTestApp. However, you can include demos showcasing the "good case" in the metadata using `kind: pass` in certain cases where it can be helpful or educational. This is permitted as long as the demos work with the current version of the MASTestApp.
+**Don't create demos for outdated OS versions** that aren't supported by the MASTG. The MASTestApp is always intended to be up to date and aligned with the versions supported by the MASTG, thereby avoiding additional maintenance of the MASTestApp. However, you can include demos showcasing the "good case" in the metadata using `kind: pass` in certain cases where it can be helpful or educational. This is permitted as long as the demos work with the current version of the MASTestApp.
 
-Please specify the mobile platform version, IDE and version, device.
+Please specify the mobile platform version, IDE version, and device.
 
 Android Example:
 
@@ -72,13 +72,13 @@ title: Common Uses of Insecure Random APIs
 
 #### platform
 
-The mobile platform. One of: ios, android.
+The mobile platform. One of: `ios`, `android`.
 
 #### tools
 
 Tools used in the demo.
 
-Prefer referencing official tool IDs from https://mas.owasp.org/MASTG/tools/ when available (for example, `MASTG-TOOL-0031`). If an official ID is not available, you may use a well-known tool name (for example, `semgrep`).
+When available, prefer referencing official tool IDs from https://mas.owasp.org/MASTG/tools/ (for example, `MASTG-TOOL-0031`). If an official ID is not available, you may use a well-known tool name (for example, `semgrep`).
 
 Example:
 
@@ -131,7 +131,7 @@ Include these if relevant:
 
 #### Sample
 
-Shortly describe the sample and specify the exact sample files used using this notation:
+Shortly describe the sample and specify the exact sample files using this notation:
 
 **Single file:**
 
@@ -150,14 +150,14 @@ Example:
 ```md
 ### Sample
 
-The snippet below shows sample code that sends sensitive data over the network using the `HttpURLConnection` class. The data is sent to `https://httpbin.org/post` which is a dummy endpoint that returns the data it receives.
+The snippet below shows sample code that sends sensitive data over the network using the `HttpURLConnection` class. The data is sent to `https://httpbin.org/post`, which is a dummy endpoint that returns the data it receives.
 
 {{ MastgTest.kt # MastgTest_reversed.java }}
 ```
 
 #### Steps
 
-A concise writeup following all steps from the linked test, including placeholders for testing code and scripts (for example, SAST rules, `run.sh`).
+A concise write-up following all steps from the linked test, including placeholders for testing code and scripts (for example, SAST rules, `run.sh`).
 
 Example:
 
@@ -173,7 +173,7 @@ Let's run our semgrep rule against the sample code.
 
 #### Observation
 
-A concise description of the observation for this specific demo including placeholders for output files (for example, `output.txt`, `output.json`).
+A concise description of the observation for this specific demo, including placeholders for output files (for example, `output.txt`, `output.json`).
 
 Example:
 
@@ -198,9 +198,9 @@ Review each of the reported instances.
 
 - Line 12 seems to be used to generate random numbers for security purposes, in this case for generating authentication tokens.
 - Line 17 is part of the function `get_random`. Review any calls to this function to ensure that the random number is not used in a security-relevant context.
-- Line 27 is part of the password generation function which is a security-critical operation.
+- Line 27 is part of the password generation function, which is a security-critical operation.
 
-Note that line 37 did not trigger the rule because the random number is generated using `SecureRandom` which is a secure random number generator.
+Note that line 37 did not trigger the rule because the random number is generated using `SecureRandom`, which is a secure random number generator.
 ```
 
 
@@ -220,7 +220,7 @@ Must be a modified version of the original files in the apps’ repos:
 * Android: `app/src/main/java/org/owasp/mastestapp/MastgTest.kt`
 * iOS: `MASTestApp/MastgTest.swift`
 
-When working on a new demo you **must include the whole file** with the original name in the demo folder.
+When working on a new demo, you **must include the whole file** with the original name in the demo folder.
 
 #### Summary
 
@@ -229,26 +229,26 @@ Must contain a summary as a comment.
 Example:
 
 ```kt
-// SUMMARY: This sample demonstrates different common ways of insecurely generating random numbers in Java.
+// SUMMARY: This sample demonstrates various common ways of generating random numbers insecurely in Java.
 ```
 
 #### Logic
 
 The file must include code that demonstrates the addressed weakness.
-The provided default `MastgTest.kt` and `MastgTest.swift` contain some basic logic that will return a string to the UI. If possible try to return some meaningful string.
+The provided default `MastgTest.kt` and `MastgTest.swift` files contain some basic logic that returns a string to the UI. If possible, try to return some meaningful string.
 
-For example, if you create a random number you can return it; or if you write files to the external storage you can return a list of file paths so that the user of the app can read them. You can also use that string to display some meaningful errors.
+For example, if you generate a random number, you can return it; or if you write files to external storage, you can return a list of file paths so that the app's user can read them. You can also use that string to display some meaningful errors.
 
 #### Fail/Pass
 
-Must contain comments indicating fail/pass and the test alias. This way we're able to validate that the output is correct (e.g. the code contains 3 failures of `MASTG-TEST-0204`). We can easily parse and count the comments and we can do the same in the output.
+Must contain comments indicating fail/pass and the test alias. This way, we can validate that the output is correct (e.g., the code contains three failures of `MASTG-TEST-0204`). We can easily parse and count the comments, and we can do the same in the output.
 
-Each FAIL/PASS comment must include the test Id and an explanation of why it fails/passes.
+Each FAIL/PASS comment must include the test ID and an explanation of why it fails/passes.
 
 Example:
 
 ```kt
-// FAIL: [MASTG-TEST-0204] The app insecurely uses random numbers for generating authentication tokens.
+// FAIL: [MASTG-TEST-0204] The app insecurely generates authentication tokens using random numbers.
 return r.nextDouble();
 
 

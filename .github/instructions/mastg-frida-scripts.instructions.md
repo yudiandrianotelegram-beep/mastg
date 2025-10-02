@@ -33,8 +33,8 @@ Examples:
 
 ### Inspiration
 
-- Don't reinvent the wheel when something already exists. Use existing open-source sources when available, for example https://codeshare.frida.re/browse.
-- If you use a source be sure to document it and give creadit to the author. Include a link to the original source in a comment at the beginning of the frida script.
+- Don't reinvent the wheel when something already exists. Use existing open-source sources when available, for example, https://codeshare.frida.re/browse.
+- If you use a source, be sure to document it and give credit to the author. Include a link to the source in a comment at the beginning of the frida script.
 
 Example:
 
