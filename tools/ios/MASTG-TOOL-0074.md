@@ -31,7 +31,7 @@ Starting up Objection depends on whether you've patched the IPA or whether you a
 
 ```bash
 # Connecting to a patched IPA
-$ objection explore
+$ objection start
 
 # Using frida-ps to get the correct application name
 $ frida-ps -Ua | grep -i Telegram

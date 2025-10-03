@@ -23,7 +23,7 @@ Starting up Objection depends on whether you've patched the APK or whether you a
 
 ```bash
 # Connecting to a patched APK
-objection explore
+objection start
 
 # Find the correct name using frida-ps
 $ frida-ps -Ua | grep -i telegram

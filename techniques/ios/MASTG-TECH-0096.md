@@ -173,7 +173,7 @@ You can dump the app's process memory with @MASTG-TOOL-0074 and @MASTG-TOOL-0106
 With objection it is possible to dump all memory of the running process on the device by using the command `memory dump all`.
 
 ```bash
-$ objection explore
+$ objection start
 
 iPhone on (iPhone: 10.3.1) [usb] # memory dump all /Users/foo/memory_iOS/memory
 Dumping 768.0 KiB from base: 0x1ad200000  [####################################]  100%
