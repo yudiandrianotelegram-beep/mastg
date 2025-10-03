@@ -19,5 +19,5 @@ $ objection patchapk --source UnCrackable-Level1.apk
 # Install the patched APK on the Android phone
 $ adb install UnCrackable-Level1.objection.apk
 # After running the mobile phone, objection will detect the running frida-server through the APK
-$ objection explore
+$ objection start
 ```
