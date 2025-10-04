@@ -12,7 +12,7 @@ Standards for authoring reference application pages under `apps/`. These pages d
 
 - The filename defines the app ID: `MASTG-APP-\d{4}.md`
 - Do not add an `id:` field to the YAML front matter
-- Use the following available number within the platform folder. Coordinate in PRs to avoid collisions
+- Use the next available number in the platform folder. Coordinate in PRs to avoid collisions
 
 ## Markdown structure
 
