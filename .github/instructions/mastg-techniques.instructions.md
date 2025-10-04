@@ -13,7 +13,7 @@ File naming and IDs:
 
 - The filename defines the technique ID: `MASTG-TECH-\d{4}.md`.
 - Do not add an `id:` field to the YAML front matter for techniques.
-- Use the next available increment number within the platform folder. Coordinate in PRs to avoid collisions.
+- Use the next available number within the platform folder. Coordinate in PRs to avoid collisions.
 
 Follow the global Markdown rules (see `.github/instructions/markdown.instructions.md`). Use `##` for top-level sections inside the page.
 
