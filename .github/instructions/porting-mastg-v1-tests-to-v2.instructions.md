@@ -108,7 +108,7 @@ Review existing content and **UPDATE** it. Especially references to Android/iOS 
 Best practices are platform-specific and can be linked in the test metadata. Our automation creates a “Mitigations” section automatically.
 
 1. Check if a best practice already exists in `best-practices/` folder
-2. If it doesn’t exist yet, create it new in `best-practices/` using the following available ID
+2. If it doesn’t exist yet, create it new in `best-practices/` using the next available ID.
 3. Add a reference to the best practices with @MASTG-BEST-xxxx
 
 #### Deprecating V1 tests
