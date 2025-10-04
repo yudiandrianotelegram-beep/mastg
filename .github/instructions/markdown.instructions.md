@@ -66,7 +66,7 @@ Follow these guidelines for formatting and structuring your markdown content:
 
 ### Abbreviations
 
-- On first use, spell out the term followed by the abbreviation in parentheses; use the acronym alone on subsequent uses within the chapter.
+- On first use, spell out the term followed by the abbreviation in parentheses; use the abbreviation alone on subsequent uses within the chapter.
 - If the term appears only once, prefer the full term instead of the abbreviation.
 - In titles/headings, abbreviations are acceptable, but introduce them properly in the following text.
 - Use "a" or "an" based on pronunciation (e.g., a URL, an APK).
