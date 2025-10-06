@@ -57,7 +57,7 @@ The test ID.
 
 #### weakness
 
-The MASWE weakness ID that the test references.
+The MASWE weakness ID associated with this test.
 
 - In YAML front matter, specify the bare identifier (for example, `weakness: MASWE-0069`). In body text, include the leading `@` (for example, @MASWE-0069).
 
