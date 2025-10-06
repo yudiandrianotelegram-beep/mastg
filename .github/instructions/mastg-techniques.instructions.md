@@ -11,7 +11,7 @@ Locations:
 
 File naming and IDs:
 
-- The technique ID is defined by the filename: `MASTG-TECH-\d{4}.md`.
+- The filename defines the technique ID: `MASTG-TECH-\d{4}.md`.
 - Do not add an `id:` field to the YAML front matter for techniques.
 - Use the next available number within the platform folder. Coordinate in PRs to avoid collisions.
 
@@ -110,4 +110,4 @@ You should see method entries in the console matching the targeted patterns. If 
 
 - Multi-platform techniques: If steps are identical across platforms, place the page under `generic/`. If they differ meaningfully, create separate platform pages.
 - Tool selection: Link to multiple tools when appropriate and list trade-offs briefly in the text; keep detailed tool usage on the tool pages.
-- Deprecation: If a technique becomes obsolete (for example, platform removed capability), set `status: deprecated` and add a short note at the top explaining why, with links to alternatives.
+- Deprecation: If a technique becomes obsolete (for example, a platform's removed capability), set `status: deprecated` and add a short note at the top explaining why, with links to alternatives.

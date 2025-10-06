@@ -1,6 +1,6 @@
 # Reference Apps Authoring Instructions
 
-Standards for authoring reference application pages under `apps/`. These pages describe vulnerable or exemplar applications used across tests, techniques, and demos.
+Standards for authoring reference application pages under `apps/`. These pages describe vulnerable or exemplary applications used across tests, techniques, and demos.
 
 ## Locations
 
@@ -10,9 +10,9 @@ Standards for authoring reference application pages under `apps/`. These pages d
 
 ## File naming and IDs
 
-- The app ID is defined by the filename: `MASTG-APP-\d{4}.md`
+- The filename defines the app ID: `MASTG-APP-\d{4}.md`
 - Do not add an `id:` field to the YAML front matter
-- Use the next available number within the platform folder. Coordinate in PRs to avoid collisions
+- Use the next available number in the platform folder. Coordinate in PRs to avoid collisions
 
 ## Markdown structure
 
@@ -52,11 +52,11 @@ package: sg.vantagepoint.uncrackable1
 Entries should be short and referential. Do not duplicate installation or usage docs that belong in the app’s own repository.
 
 - One or two sentences describing the app and its purpose
-- Add any platform-specific hints such as jailbreak expectations or proxy setup
+- Add any platform-specific hints, such as jailbreak expectations or proxy setup
 
 ### Cross-linking
 
-In YAML front matter add `weaknesses` listing all the weaknesses from the MASWE that can be tested and are present in the app.
+In the YAML front matter, add `weaknesses` listing all the weaknesses from the MASWE that can be tested and are present in the app.
 
 Example:
 
@@ -64,7 +64,7 @@ Example:
 weaknesses: [MASWE-0034, MASWE-0056]
 ```
 
-Do not add specific app versions here. If a MASTG-DEMO requires a specific version of an app, document it in the demo, not in the app entry.
+Do not add specific app versions here. If a MASTG-DEMO requires a particular version of an app, document it in the demo, not in the app entry.
 
 ## Writing conventions
 
