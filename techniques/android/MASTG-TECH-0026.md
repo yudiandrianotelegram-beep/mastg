@@ -5,7 +5,7 @@ platform: android
 
 ??? info "Info about objection"
 
-    The commands below are for objection version 1.11.0. At the moment of writing this document, a version 2 of objection is expected, which would support Frida 17 and above.
+    The commands below are for objection version 1.11.0, which relies on Frida < 17. To use objection, install `frida-tools==13.7.1` and use a `frida-server` lower than 17 on your device. If you want to use objection with Frida 17, you can pull the latest version from the objection repository. Note that some commands have been modified in the next release, so you may have to modify the steps below. Once the updated version has officially been released, the steps below will be updated.
 
     For objection version 2, the API `explore` command has been replaced with `start`.
 
