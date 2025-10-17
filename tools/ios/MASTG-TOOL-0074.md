@@ -4,6 +4,12 @@ platform: ios
 source: https://github.com/sensepost/objection
 ---
 
+??? info "Info about objection"
+
+    The commands below are for objection version 1.11.0. At the moment of writing this document, a version 2 of objection is expected, which would support Frida 17 and above.
+
+    For objection version 2, the API `explore` command has been replaced with `start`.
+
 Objection offers several features specific to iOS. You can find the [full list of features](https://github.com/sensepost/objection/wiki/Features) on the project's page, but here are a few interesting ones:
 
 - Repackage applications to include the Frida gadget
@@ -31,7 +37,7 @@ Starting up Objection depends on whether you've patched the IPA or whether you a
 
 ```bash
 # Connecting to a patched IPA
-$ objection start
+$ objection explore
 
 # Using frida-ps to get the correct application name
 $ frida-ps -Ua | grep -i Telegram

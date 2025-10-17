@@ -3,6 +3,12 @@ title: Process Exploration
 platform: ios
 ---
 
+??? info "Info about objection"
+
+    The commands below are for objection version 1.11.0. At the moment of writing this document, a version 2 of objection is expected, which would support Frida 17 and above.
+
+    For objection version 2, the API `explore` command has been replaced with `start`.
+
 When testing an app, process exploration can provide the tester with deep insights into the app process memory. It can be achieved via runtime instrumentation and allows to perform tasks such as:
 
 - Retrieving the memory map and loaded libraries.
@@ -173,7 +179,7 @@ You can dump the app's process memory with @MASTG-TOOL-0074 and @MASTG-TOOL-0106
 With objection it is possible to dump all memory of the running process on the device by using the command `memory dump all`.
 
 ```bash
-$ objection start
+$ objection explore
 
 iPhone on (iPhone: 10.3.1) [usb] # memory dump all /Users/foo/memory_iOS/memory
 Dumping 768.0 KiB from base: 0x1ad200000  [####################################]  100%
