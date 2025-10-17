@@ -3,6 +3,12 @@ title: Dynamic Analysis on Non-Rooted Devices
 platform: android
 ---
 
+??? info "Info about objection"
+
+    The commands below are for objection version 1.11.0. At the moment of writing this document, a version 2 of objection is expected, which would support Frida 17 and above.
+
+    For objection version 2, the API `explore` command has been replaced with `start`.
+
 Non-rooted devices have the benefit of replicating an environment that the application is intended to run on.
 
 Thanks to tools like @MASTG-TOOL-0038, you can patch the app in order to test it like if you were on a rooted device (but of course being jailed to that one app). To do that you have to perform one additional step: [patch the APK](https://github.com/sensepost/objection/wiki/Patching-Android-Applications#patching---patching-an-apk "patching - patching an APK") to include the [Frida gadget](https://www.frida.re/docs/gadget/ "Frida Gadget") library.
@@ -19,5 +25,5 @@ $ objection patchapk --source UnCrackable-Level1.apk
 # Install the patched APK on the Android phone
 $ adb install UnCrackable-Level1.objection.apk
 # After running the mobile phone, objection will detect the running frida-server through the APK
-$ objection start
+$ objection explore
 ```
