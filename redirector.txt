@@ -1,0 +1,31 @@
+  - name: Setup ripgrep
+    run: sudo apt-get update && sudo apt-get install -y ripgrep
+
+  - name: Make scan script executable
+    run: |
+      chmod +x ./tools/scan_phishing_links.sh || true
+
+  - name: Run phishing scans
+    id: run_scan
+    run: |
+      mkdir -p reports
+      ./tools/scan_phishing_links.sh --out reports || true
+      # collect total findings (sum of counts in summary.counts)
+      if [ -f reports/*/summary.counts ]; then
+        TOTAL=$(awk '{s+=$NF} END{print s+0}' reports/*/summary.counts || echo 0)
+      else
+        TOTAL=0
+      fi
+      echo "total_findings=$TOTAL" >> $GITHUB_OUTPUT
+
+  - name: Upload scan artifacts
+    uses: actions/upload-artifact@v4
+    with:
+      name: phishing-scan-reports
+      path: reports/
+
+  - name: Fail if critical findings
+    if: steps.run_scan.outputs.total_findings != '0'
+    run: |
+      echo "Critical findings detected by phishing scan. See artifact 'phishing-scan-reports'. Failing job."
+      exit 1
